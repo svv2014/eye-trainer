@@ -2,10 +2,20 @@ import { hot } from 'react-hot-loader';
 import React from 'react';
 import './App.css';
 
-const message = 'Welcome to web';
+let message = "Start";
+
+let start = () => {
+    console.log(message);
+    if (message === "Start") {
+        message = "Stop"
+    } else {
+        message = "Start"
+    }
+}
+
 const App = () => (
   <div className="App">
-    <h1>{message}</h1>
+    <div onClick={start} className={"start-button"}>{message}</div>
   </div>
 );
 
