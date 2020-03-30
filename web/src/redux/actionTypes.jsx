@@ -1,0 +1,1 @@
+export const SET_EXERCISE = 'SET_EXERCISE';

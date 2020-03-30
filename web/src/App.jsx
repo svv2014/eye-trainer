@@ -2,20 +2,9 @@ import { hot } from 'react-hot-loader';
 import React from 'react';
 import './App.css';
 
-let message = "Start";
-
-let start = () => {
-    console.log(message);
-    if (message === "Start") {
-        message = "Stop"
-    } else {
-        message = "Start"
-    }
-}
-
 const App = () => (
   <div className="App">
-    <div onClick={start} className={"start-button"}>{message}</div>
+    <a href={"exercise1"} className={"start-button"}>{"Start"}</a>
   </div>
 );
 
