@@ -8,7 +8,7 @@ import {    BrowserRouter as Router,
     Redirect,
     useHistory,
     useLocation} from "react-router-dom";
-import Exercise1 from "./Exercise1";
+import Exercise1 from "./pages/Exercise";
 import App from "./App";
 
 function goBack() {

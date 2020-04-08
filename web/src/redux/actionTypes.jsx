@@ -1,1 +1,2 @@
 export const SET_EXERCISE = 'SET_EXERCISE';
+export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
