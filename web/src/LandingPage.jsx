@@ -21,10 +21,12 @@ const LandingPage = () =>
      (
         <Router>
             <div>
-                <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
                 <Switch>
                     <Redirect exact from="/" to="/welcome"/>
-                    <Route path="/exercise1"><Exercise1/></Route>
+                    <Route path="/exercise1">
+                        <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
+                        <Exercise1/>
+                    </Route>
                     <Route path="/welcome"><App/></Route>
                 </Switch>
             </div>

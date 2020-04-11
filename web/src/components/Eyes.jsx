@@ -43,7 +43,7 @@ class Eyes extends React.Component {
     }
 
     render() {
-        let eyeSize = this.state.size.width > this.state.size.height ? this.state.size.height : this.state.size.width;
+        let eyeSize = this.state.size.width > this.state.size.height ? this.state.size.height -5 : this.state.size.width -5;
         let classNameEyeMove = "";
         if (this.state.eyeAction && this.state.eyeAction === ACTION_LEFT) {
             classNameEyeMove += ' moveLeft'

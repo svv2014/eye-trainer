@@ -1,3 +1,10 @@
 .back {
   color: white;
+  width: 45px;
+  font-size: 18px;
+  margin-top: 5px;
+  padding: 5px;
+  border: solid gray 1px;
+  display: block;
+  text-align: center;
 }
