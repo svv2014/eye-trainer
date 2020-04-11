@@ -1,0 +1,52 @@
+.pauseButtonContainer {
+   width: 100px;
+   height: 40px;
+   border: solid white 1px;
+   text-align: center;
+   position: relative;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+.pauseButtonContainer:hover {
+  border: solid white 2px;
+}
+
+.play {
+
+}
+
+.pauseButtonContainer > .icon {
+    color: white;
+    font-size: 25px;
+    height: 100%;
+}
+.pauseButton{
+  text-align-all: center;
+}
+.pause {
+  margin: auto;
+  width: 0;
+  height: 30px;
+  border-color: lightgray;
+  border-style: double;
+  border-width: 0px 0px 0px 25px;
+}
+
+.play {
+  margin: auto;
+  width: 0;
+  height: 50%;
+  border-style: solid;
+  box-sizing: border-box;
+  border-width: 15px 0px 15px 25px;
+  border-color: transparent transparent transparent white;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

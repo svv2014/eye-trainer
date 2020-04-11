@@ -10,18 +10,19 @@ import React from 'react';
 const STATE = 'state';
 
 /**
- * has in parameters windowSize and eyeAction
+ * has in parameters size and eyeAction
  */
 class Eyes extends React.Component {
     stateSub = new Subject();
     resultDebounce = this.stateSub.pipe(debounceTime(300));
     subscription;
     exerciseSubscription;
+
     constructor(props) {
         super(props);
-        this.state = {windowSize: props.windowSize, eyeAction: ''};
+        this.state = {size: props.size, eyeAction: ''};
         this.subscription = this.resultDebounce.subscribe(state => {
-            if (state.action === STATE){
+            if (state.action === STATE) {
                 this.setState(state.data)
             }
         })
@@ -32,7 +33,7 @@ class Eyes extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (JSON.stringify(prevState) !== JSON.stringify(this.props)) {
-            this.stateSub.next({action: STATE, data: this.props })
+            this.stateSub.next({action: STATE, data: this.props})
         }
     }
 
@@ -42,7 +43,7 @@ class Eyes extends React.Component {
     }
 
     render() {
-        let eyeSize = this.state.windowSize.width > this.state.windowSize.height ? this.state.windowSize.height : this.state.windowSize.width;
+        let eyeSize = this.state.size.width > this.state.size.height ? this.state.size.height : this.state.size.width;
         let classNameEyeMove = "";
         if (this.state.eyeAction && this.state.eyeAction === ACTION_LEFT) {
             classNameEyeMove += ' moveLeft'
@@ -51,9 +52,11 @@ class Eyes extends React.Component {
         }
 
         return (
-            <div className="container" style={{width: eyeSize, height: eyeSize}}>
-                <div className={classNameEyeMove + " eye eyeLeft"}/>
-                <div className={classNameEyeMove + " eye eyeRight"}/>
+            <div className={"eyeHolder"} style={{width: eyeSize, height: eyeSize/2}}>
+                <div className="eyeContainer" style={{width: eyeSize, height: eyeSize}}>
+                    <div className={classNameEyeMove + " eye eyeLeft"}/>
+                    <div className={classNameEyeMove + " eye eyeRight"}/>
+                </div>
             </div>)
     };
 }
