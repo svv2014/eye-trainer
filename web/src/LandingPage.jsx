@@ -20,16 +20,26 @@ function goBack() {
     window.history.back();
 }
 
-const beginner = [exerciseDelay(5, 'Begin in '),
-    exerciseLeftRight(5),
-    exerciseDelay(5, 'Rest '),
-    exerciseUpDown(5),
-    exerciseDelay(5, 'Rest '),
-    exerciseLeftRight(5),
-    exerciseDelay(5, 'Rest '),
-    exerciseUpDown(5),
-    exerciseFinished('You finished for today'),
-];
+const fistSet = (repetitions) => {
+    return [exerciseDelay(5, 'Begin in '),
+        exerciseLeftRight(repetitions),
+        exerciseDelay(5, 'Rest '),
+        exerciseUpDown(repetitions),
+        exerciseDelay(5, 'Rest '),
+        exerciseLeftRight(repetitions),
+        exerciseDelay(5, 'Rest '),
+        exerciseUpDown(repetitions),
+        exerciseFinished('You finished for today'),
+    ];
+}
+
+
+const beginner = fistSet(5);
+
+const intermediate = fistSet(10)
+
+const advanced = fistSet(15);
+
 
 const LandingPage = () =>
     (
@@ -40,6 +50,14 @@ const LandingPage = () =>
                     <Route path="/exerciseBeginner">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
                         <Exercise1 activities={beginner}/>
+                    </Route>
+                    <Route path="/exerciseIntermediate">
+                        <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
+                        <Exercise1 activities={intermediate}/>
+                    </Route>
+                    <Route path="/exerciseAdvanced">
+                        <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
+                        <Exercise1 activities={advanced}/>
                     </Route>
                     <Route path="/welcome"><App/></Route>
                 </Switch>

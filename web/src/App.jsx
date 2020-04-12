@@ -9,9 +9,13 @@ const App = () => (
           Contact lenses cannot be worn before, during, after doing exercises. </h3>
 
       <br/>
-      <h2>Start by choosing your level: </h2>
-
-    <a href={"exerciseBeginner"} className={"start-button"}>{"Beginner"}</a>
+      <h2>Start exercising by choosing difficulty </h2>
+      <h3>Beginners should start with Easy level once a day during one week. After then moderate as you feel.
+          You can pause any time by clicking on pause button or pressing 'space'.</h3>
+      <br/>
+    <a href={"exerciseBeginner"} className={"start-button"}>{"Easy"}</a>
+    <a href={"exerciseIntermediate"} className={"start-button"}>{"Medium"}</a>
+    <a href={"exerciseAdvanced"} className={"start-button"}>{"Tough"}</a>
   </div>
 );
 
