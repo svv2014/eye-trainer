@@ -48,21 +48,26 @@
   transition: all 0.2s ease;
 }
 
-
-.moveLeft {
-
-}
-
 .moveLeft:before {
    left: 0%;
    top: 68%;
 }
 
-.moveRight {
-
-}
-
 .moveRight:before {
   left: 68%;
   top: 0%;
+}
+
+.moveUp:before {
+  left: 18%;
+  top: 18%;
+}
+
+.moveDown:before {
+  left: 50%;
+  top: 50%;
+}
+
+.relax {
+  border-radius: 300% 36%;
 }

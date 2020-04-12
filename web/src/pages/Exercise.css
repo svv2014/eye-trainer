@@ -3,10 +3,29 @@
     height: 100%;
 }
 
-.currentStep {
+.displayCount {
     text-align: center;
-    margin: auto;
     color: white;
     font-size: 25px;
     padding: 10px;
+    margin: auto;
+}
+.displayNext {
+    text-align: left;
+    color: darkgray;
+    font-size: 18px;
+    padding: 5px;
+    margin: auto;
+}
+
+.statusHolder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.currentStep {
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    display: inline;
 }

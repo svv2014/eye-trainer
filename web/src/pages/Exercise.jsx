@@ -1,9 +1,14 @@
 import React from 'react';
 import './Exercise.css';
+import './Animate.css';
 import {connect} from "react-redux";
 import {Subject} from "rxjs";
 import {debounceTime} from "rxjs/operators";
-import {exerciseLeftRight, startExercise} from "../tools/ExersiseUtils";
+import {
+    ACTIVITY_TYPE_DELAY,
+    ACTIVITY_TYPE_EXERCISE, ACTIVITY_TYPE_FINISH,
+    startExercise
+} from "../tools/ExersiseUtils";
 import {unsubscribeIfCan} from "../tools/rxTools";
 import Eyes from "../components/Eyes";
 import PauseButton from "../components/PauseButton";
@@ -25,7 +30,9 @@ class Exercise extends React.Component {
         this.state = {
             windowSize: props.windowSize,
             play: this.play,
-            currentExercise: undefined
+            currentExercise: undefined,
+            exercises: props.activities,
+            startDelay: props.startDelay
         };
         this.subscription = this.resultDebounce.subscribe(x => {
             if (x.action === winSize) {
@@ -35,26 +42,67 @@ class Exercise extends React.Component {
     }
 
     componentDidMount() {
-        this.startExercise(exerciseLeftRight);
+        this.playNext();
+    }
+
+    playNext() {
+        console.log("Play next current set: ", this.currentExerciseSet)
+        unsubscribeIfCan(this.exerciseSubscription);
+        if (!this.currentExerciseSet) {
+            this.startSet(0);
+        } else {
+            for (let i = 0; i < this.state.exercises.length; i++) {
+                if (i === this.currentSetId + 1) {
+                    this.startSet(i);
+                    return;
+                }
+            }
+        }
+    }
+
+    startSet(setId) {
+        console.log("start set", setId)
+        this.currentSetId = setId;
+        let next = this.state.exercises.length > setId + 1 ? this.state.exercises[setId + 1] : undefined;
+        this.setState({
+            currentExerciseSet: this.state.exercises[setId],
+            nextExerciseSet: next,
+            currentExercise: undefined
+        });
+        this.startExercise(this.state.exercises[setId])
+
+        // unsubscribeIfCan(this.delaySubscription);
+        // this.delaySubscription = delayCounter(defaultStartDelay).subscribe((dealy) => {
+        //         console.log("delay: ", dealy);
+        //         this.setState({delayCount: dealy.count})
+        //     }, (e) => console.error("delay error: ", e),
+        //     () => {
+        //         this.setState({delayCount: undefined});
+        //         this.startExercise(this.state.exercises[setId])
+        //     }
+        // );
     }
 
     startExercise(exercise, lastPosition) {
         console.log('exercise, lastPosition', {exercise: exercise, lastPosition: lastPosition});
         unsubscribeIfCan(this.exerciseSubscription);
         this.currentExerciseSet = exercise;
-        this.setState({currentExerciseSet: exercise});
-        this.exerciseSubscription = startExercise(exercise, lastPosition).subscribe((x) => {
-            if (x === 'terminate') {
-                this.changePlayState(false);
-            }
-            this.setState({
-                eyeAction: x.exercise,
-                currentExercise: x
-            });
-        }, undefined, () => {
-            unsubscribeIfCan(this.exerciseSubscription);
-            this.changePlayState(false);
+        this.setState({
+            currentExerciseSet: exercise,
+            currentExercise: lastPosition
         });
+        this.exerciseSubscription = startExercise(exercise, lastPosition).subscribe((x) => {
+                this.setState({
+                    eyeAction: x.exercise,
+                    currentExercise: x
+                });
+            },
+            (e) => console.error('Error on exercise: ', e),
+            () => {
+                setTimeout(() => {
+                    this.playNext();
+                }, 0);
+            });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -73,6 +121,7 @@ class Exercise extends React.Component {
     }
 
     changePlayState = (play) => {
+        console.log("change Play State: ", play)
         if (play !== undefined) {
             this.play = play;
         } else {
@@ -92,20 +141,46 @@ class Exercise extends React.Component {
     }
 
     render() {
-        let done = this.state?.currentExercise?.id === this.state.currentExerciseSet?.repeat - 1;
-        let status = done ? 'Done' : '' + this.state.currentExercise?.id + '/' + this.state.currentExerciseSet?.repeat;
+
+        let count = this.state.currentExercise?.id === undefined ? 1 : this.state.currentExercise.id + 1;
+        let delay = this.state.currentExercise?.id === undefined ? this.state.currentExerciseSet?.repeat : this.state.currentExercise.id;
+        let status = '' + count + '/' + this.state.currentExerciseSet?.repeat;
+        let displayCount = <div className={"displayCount"}>{this.state.delayCount}</div>;
+        let next = <div className={"displayNext"}>{"Next: "} {this.state.nextExerciseSet?.name}</div>;
+
         return (
             <div className={"exerciseContainer"}>
-                <div className={"currentStep"}>{this.state.currentExerciseSet?.name}: {status} </div>
+                {this.state.delayCount !== undefined &&
+                displayCount
+                }
+
+                {this.state.currentExerciseSet?.type === ACTIVITY_TYPE_DELAY &&
+                <div className={"displayCount"}>{this.state.currentExerciseSet?.name} {delay}</div>
+                }
+
+                {this.state.currentExerciseSet?.type === ACTIVITY_TYPE_FINISH &&
+                <div className={"displayCount"}>{this.state.currentExerciseSet?.name}</div>
+                }
+
+                {this.state.currentExerciseSet &&
+                this.state.currentExerciseSet?.type === ACTIVITY_TYPE_EXERCISE &&
+                <div className={"statusHolder"}>
+                    <div className={"currentStep"}>{this.state.currentExerciseSet?.name}</div>
+                    <div className={"currentStep"}>{status}</div>
+                </div>
+                }
+                {next}
+
                 <Eyes eyeAction={this.state.eyeAction} size={this.state.windowSize}/>
                 <PauseButton onStateChage={this.onPlayButtonChange} play={this.state.play}/>
                 <KeyboardEventHandler
                     handleKeys={['space']}
                     onKeyEvent={this.keyPressed}/>
-
             </div>
         )
     };
+
+
 }
 
 const mapStateToProps = (state, ownProps) => {

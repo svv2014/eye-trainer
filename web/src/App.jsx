@@ -4,7 +4,7 @@ import './App.css';
 
 const App = () => (
   <div className="App">
-    <a href={"exercise1"} className={"start-button"}>{"Start"}</a>
+    <a href={"exerciseBeginner"} className={"start-button"}>{"Beginner"}</a>
   </div>
 );
 
