@@ -1,6 +1,7 @@
 import {of, ReplaySubject} from "rxjs";
 import {concatMap, delay} from "rxjs/operators";
 import {ACTION_CENTER, ACTION_DOWN, ACTION_LEFT, ACTION_RELAX, ACTION_RIGHT, ACTION_UP} from "./EyeActions";
+import {strings} from "../languages/localizationStrings";
 
 export const ACTIVITY_TYPE_EXERCISE = "exercise"
 export const ACTIVITY_TYPE_DELAY = "delay"
@@ -11,7 +12,7 @@ export const exerciseLeftRight = (repeat) => {
     let repeats = repeat !== undefined ? repeat : 10
     return {
         type: ACTIVITY_TYPE_EXERCISE,
-        name: "Left <-> Right",
+        name: strings.leftRight,
         delay: 700,
         moves: [ACTION_LEFT, ACTION_CENTER, ACTION_RIGHT, ACTION_CENTER],
         repeat: repeats
@@ -22,7 +23,7 @@ export const exerciseUpDown = (repeat) => {
     let repeats = repeat !== undefined ? repeat : 10;
     return {
         type: ACTIVITY_TYPE_EXERCISE,
-        name: "Up <-> Down",
+        name: strings.upAndDown,
         delay: 700,
         moves: [ACTION_UP, ACTION_CENTER, ACTION_DOWN, ACTION_CENTER],
         repeat: repeats
@@ -83,7 +84,7 @@ export const startExercise = (exercise, startFrom) => {
     }
     // reverse id for DELAY
     else if (exercise.type === ACTIVITY_TYPE_DELAY) {
-        for (let i = exercise.repeat; i > -1 ; i--) {
+        for (let i = exercise.repeat; i > -1; i--) {
             for (let x of exercise.moves) {
                 if (startFrom && startFrom.id !== undefined && !isNaN(startFrom.id)) {
                     if (startFrom.id <= i) {

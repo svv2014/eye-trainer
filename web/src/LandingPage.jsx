@@ -15,21 +15,22 @@ import App from "./App";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {exerciseDelay, exerciseFinished, exerciseLeftRight, exerciseUpDown} from "./tools/ExersiseUtils";
+import {strings} from "./languages/localizationStrings";
 
 function goBack() {
     window.history.back();
 }
 
 const fistSet = (repetitions) => {
-    return [exerciseDelay(5, 'Begin in '),
+    return [exerciseDelay(5, strings.beginIn),
         exerciseLeftRight(repetitions),
-        exerciseDelay(5, 'Rest '),
+        exerciseDelay(5, strings.rest),
         exerciseUpDown(repetitions),
-        exerciseDelay(5, 'Rest '),
+        exerciseDelay(5, strings.rest),
         exerciseLeftRight(repetitions),
-        exerciseDelay(5, 'Rest '),
+        exerciseDelay(5, strings.rest),
         exerciseUpDown(repetitions),
-        exerciseFinished('You finished for today'),
+        exerciseFinished(strings.finishedForToday),
     ];
 }
 

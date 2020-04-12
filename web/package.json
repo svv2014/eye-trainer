@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "buildDeploy": "webpack --mode production && cd .. && firebase deploy"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.20",
     "react-keyboard-event-handler": "^1.5.4",
+    "react-localization": "^1.0.15",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-transition-group": "^1.2.1",
