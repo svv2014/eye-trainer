@@ -1,2 +1,7 @@
+# exclude build
 build
 .idea
+# eclude firebase
+public
+.fireb*
+fireb*
