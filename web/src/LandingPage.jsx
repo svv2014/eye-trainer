@@ -22,7 +22,11 @@ function goBack() {
 
 const beginner = [exerciseDelay(5, 'Begin in '),
     exerciseLeftRight(5),
-    exerciseDelay(20, 'Rest for 20 seconds: '),
+    exerciseDelay(5, 'Rest '),
+    exerciseUpDown(5),
+    exerciseDelay(5, 'Rest '),
+    exerciseLeftRight(5),
+    exerciseDelay(5, 'Rest '),
     exerciseUpDown(5),
     exerciseFinished('You finished for today'),
 ];
