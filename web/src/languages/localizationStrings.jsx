@@ -17,6 +17,7 @@ export const strings = new LocalizedStrings({
         medium: "Medium",
         tough: "Tough",
         rest: "Rest",
+        next: "Next",
         finishedForToday: "You finished for today"
     },
     ru: {
@@ -35,6 +36,7 @@ export const strings = new LocalizedStrings({
         medium: "Средне",
         tough: "Сложно",
         rest: "Отдых",
+        next: "Следующее",
         finishedForToday: "Вы закончили упражнения на сегодня"
     }
 });

@@ -13,6 +13,8 @@ import {unsubscribeIfCan} from "../tools/rxTools";
 import Eyes from "../components/Eyes";
 import PauseButton from "../components/PauseButton";
 import KeyboardEventHandler from 'react-keyboard-event-handler';
+import {strings} from "../languages/localizationStrings";
+
 
 const winSize = 'winSize';
 
@@ -146,7 +148,7 @@ class Exercise extends React.Component {
         let delay = this.state.currentExercise?.id === undefined ? this.state.currentExerciseSet?.repeat : this.state.currentExercise.id;
         let status = '' + count + '/' + this.state.currentExerciseSet?.repeat;
         let displayCount = <div className={"displayCount"}>{this.state.delayCount}</div>;
-        let next = <div className={"displayNext"}>{"Next: "} {this.state.nextExerciseSet?.name}</div>;
+        let next = <div className={"displayNext"}>{strings.next + ": "} {this.state.nextExerciseSet?.name}</div>;
 
         return (
             <div className={"exerciseContainer"}>
