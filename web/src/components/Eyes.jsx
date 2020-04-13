@@ -2,7 +2,15 @@ import {Subject} from "rxjs";
 import {debounceTime} from "rxjs/operators";
 import './Eyes.css';
 import {unsubscribeIfCan} from "../tools/rxTools";
-import {ACTION_DOWN, ACTION_LEFT, ACTION_RELAX, ACTION_RIGHT, ACTION_UP} from "../tools/EyeActions";
+import {
+    ACTION_DOWN, ACTION_DOWN_LEFT, ACTION_DOWN_RIGHT,
+    ACTION_LEFT,
+    ACTION_RELAX,
+    ACTION_RIGHT,
+    ACTION_UP,
+    ACTION_UP_LEFT,
+    ACTION_UP_RIGHT
+} from "../tools/EyeActions";
 import {hot} from "react-hot-loader";
 import React from 'react';
 
@@ -55,6 +63,14 @@ class Eyes extends React.Component {
             classNameEyeMove += ' moveDown'
         } else if (this.state.eyeAction && this.state.eyeAction === ACTION_RELAX) {
             classNameEyeMove += ' relax'
+        } else if (this.state.eyeAction && this.state.eyeAction === ACTION_UP_RIGHT) {
+            classNameEyeMove += ' moveUpRight'
+        } else if (this.state.eyeAction && this.state.eyeAction === ACTION_UP_LEFT) {
+            classNameEyeMove += ' moveUpLeft'
+        } else if (this.state.eyeAction && this.state.eyeAction === ACTION_DOWN_LEFT) {
+            classNameEyeMove += ' moveDownLeft'
+        } else if (this.state.eyeAction && this.state.eyeAction === ACTION_DOWN_RIGHT) {
+            classNameEyeMove += ' moveDownRight'
         }
 
         return (

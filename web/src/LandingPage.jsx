@@ -14,7 +14,13 @@ import Exercise1 from "./pages/Exercise";
 import App from "./App";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import {exerciseDelay, exerciseFinished, exerciseLeftRight, exerciseUpDown} from "./tools/ExersiseUtils";
+import {
+    exerciseDelay,
+    exerciseFinished,
+    exerciseLeftRight, exerciseRoundLeft, exerciseRoundRight,
+    exerciseUpDown,
+    exerciseUpLeftDownRight, exerciseUpRightDownLeft
+} from "./tools/ExersiseUtils";
 import {strings} from "./languages/localizationStrings";
 
 function goBack() {
@@ -22,25 +28,38 @@ function goBack() {
 }
 
 const fistSet = (repetitions) => {
-    return [exerciseDelay(5, strings.beginIn),
+    return [exerciseDelay(5, strings.getReady),
         exerciseLeftRight(repetitions),
-        exerciseDelay(5, strings.rest),
+        exerciseDelay(5, strings.blink),
         exerciseUpDown(repetitions),
-        exerciseDelay(5, strings.rest),
-        exerciseLeftRight(repetitions),
-        exerciseDelay(5, strings.rest),
-        exerciseUpDown(repetitions),
-        exerciseFinished(strings.finishedForToday),
+        exerciseDelay(5, strings.blink),
+        exerciseUpRightDownLeft(repetitions),
+        exerciseDelay(5, strings.blink),
+        exerciseUpLeftDownRight(repetitions),
     ];
 }
 
+const addFinish = (set) => {
+    return [...set,
+        exerciseFinished(strings.finishedForToday)];
+}
 
-const beginner = fistSet(5);
+const beginner = addFinish(fistSet(5));
 
-const intermediate = fistSet(10)
+const intermediate =
+    addFinish([...fistSet(10),
+        exerciseDelay(5, strings.blink),
+        exerciseRoundLeft(2),
+        exerciseDelay(5, strings.blink),
+        exerciseRoundRight(2)
+    ]);
 
-const advanced = fistSet(15);
-
+const advanced = addFinish([...fistSet(15),
+    exerciseDelay(5, strings.blink),
+    exerciseRoundLeft(5),
+    exerciseDelay(5, strings.blink),
+    exerciseRoundRight(5)
+]);
 
 const LandingPage = () =>
     (

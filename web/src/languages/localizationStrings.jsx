@@ -3,7 +3,8 @@ import LocalizedStrings from 'react-localization';
 export const strings = new LocalizedStrings({
     en: {
         leftRight: "Left <-> Right",
-        beginIn: "Begin in ",
+        beginIn: "Begin in",
+        getReady: "Get ready",
         upAndDown: "Up <-> Down",
         appName: "Eye Trainer",
         disclaimer: "Disclaimer: {0}",
@@ -17,12 +18,20 @@ export const strings = new LocalizedStrings({
         medium: "Medium",
         tough: "Tough",
         rest: "Rest",
+        blink: "Blink",
         next: "Next",
-        finishedForToday: "You finished for today"
+        finishedForToday: "You finished for today",
+        circleRight: "Circle Right",
+        circleLeft: "Circle Left",
+        upLeft: "Up Left",
+        upRight: "Up Right",
+        downLeft: "Down Left",
+        downRight: "Down Right",
     },
     ru: {
         leftRight: "Лево <-> Право",
-        beginIn: "Начало через ",
+        beginIn: "Начало через",
+        getReady: "Приготовтесь",
         upAndDown: "Верх <-> Низ",
         appName: "Тренер для глаз",
         disclaimer: "Заявления об отказе от ответственности: {0}",
@@ -36,7 +45,14 @@ export const strings = new LocalizedStrings({
         medium: "Средне",
         tough: "Сложно",
         rest: "Отдых",
+        blink: "Поморгать",
         next: "Следующее",
-        finishedForToday: "Вы закончили упражнения на сегодня"
+        finishedForToday: "Вы закончили упражнения на сегодня",
+        circleRight: "Круг в право",
+        circleLeft: "Круг в лево",
+        upLeft: "Верх лево",
+        upRight: "Верх право",
+        downLeft: "Низ лево",
+        downRight: "Низ право",
     }
 });

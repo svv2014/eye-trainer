@@ -68,6 +68,26 @@
   top: 50%;
 }
 
+.moveUpRight:before {
+  left: 36%;
+  top: 6%;
+}
+
+.moveUpLeft:before {
+  left: 6%;
+  top: 36%;
+}
+
+.moveDownLeft:before {
+  left: 26%;
+  top: 64%;
+}
+
+.moveDownRight:before {
+  left: 64%;
+  top: 26%;
+}
+
 .relax {
   border-radius: 300% 36%;
 }
