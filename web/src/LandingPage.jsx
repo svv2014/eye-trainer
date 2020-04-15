@@ -61,6 +61,13 @@ const advanced = addFinish([...fistSet(15),
     exerciseRoundRight(5)
 ]);
 
+const advanced2 = addFinish([...fistSet(25),
+    exerciseDelay(20, strings.blink),
+    exerciseRoundLeft(10),
+    exerciseDelay(5, strings.blink),
+    exerciseRoundRight(10)
+]);
+
 const LandingPage = () =>
     (
         <Router>
@@ -78,6 +85,10 @@ const LandingPage = () =>
                     <Route path="/exerciseAdvanced">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
                         <Exercise1 activities={advanced}/>
+                    </Route>
+                    <Route path="/exerciseAdvanced2">
+                        <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
+                        <Exercise1 activities={advanced2}/>
                     </Route>
                     <Route path="/welcome"><App/></Route>
                 </Switch>
