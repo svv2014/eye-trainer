@@ -61,7 +61,7 @@ const advanced = addFinish([...fistSet(15),
     exerciseRoundRight(5)
 ]);
 
-const advanced2 = addFinish([...fistSet(25),
+const advanced2 = addFinish([...fistSet(30),
     exerciseDelay(20, strings.blink),
     exerciseRoundLeft(10),
     exerciseDelay(5, strings.blink),
