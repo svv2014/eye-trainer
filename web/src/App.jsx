@@ -15,7 +15,7 @@ const App = () => (
         <a href={"exerciseBeginner"} className={"start-button"}>{strings.easy}</a>
         <a href={"exerciseIntermediate"} className={"start-button"}>{strings.medium}</a>
         <a href={"exerciseAdvanced"} className={"start-button"}>{strings.tough}</a>
-        <a href={"exerciseAdvanced2"} className={"start-button"}>{strings.tough + "x2"}</a>
+        <a href={"exerciseAdvanced2"} className={"start-button"}>{strings.tough + " x2"}</a>
     </div>
 );
 
