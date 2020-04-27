@@ -22,6 +22,7 @@ import {
     exerciseUpLeftDownRight, exerciseUpRightDownLeft
 } from "./tools/ExersiseUtils";
 import {strings} from "./languages/localizationStrings";
+import SelfTest from "./pages/SelfTest";
 
 function goBack() {
     window.history.back();
@@ -74,6 +75,10 @@ const LandingPage = () =>
             <div>
                 <Switch>
                     <Redirect exact from="/" to="/welcome"/>
+                    <Route path="/selfTest">
+                        <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
+                        <SelfTest/>
+                    </Route>
                     <Route path="/exerciseBeginner">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
                         <Exercise1 activities={beginner}/>

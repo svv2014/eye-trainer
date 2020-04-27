@@ -1,4 +1,6 @@
 const react = require('@neutrinojs/react');
+const CopyPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
   options: {
@@ -11,5 +13,5 @@ module.exports = {
         title: 'web'
       }
     }),
-  ],
+  ]
 };

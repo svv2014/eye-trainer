@@ -6,7 +6,7 @@ export const strings = new LocalizedStrings({
         beginIn: "Begin in",
         getReady: "Get ready",
         upAndDown: "Up <-> Down",
-        appName: "Eye Trainer",
+        appName: "Eye Fitness",
         disclaimer: "Disclaimer: {0}",
         disclaimerTextPart1: "Please check with your Eye Doctor fist before starting exercises.\n" +
             " Contact lenses cannot be worn before, during, after doing exercises.\n" +
@@ -27,15 +27,27 @@ export const strings = new LocalizedStrings({
         upRight: "Up Right",
         downLeft: "Down Left",
         downRight: "Down Right",
+        selfTestTitle: "Self Assessment",
+        eyeTestRow_1: "E",
+        eyeTestRow_2: "F P",
+        eyeTestRow_3: "T O Z",
+        eyeTestRow_4: "P D C",
+        eyeTestRow_5: "L P E D",
+        eyeTestRow_6: "P E C F D",
+        eyeTestRow_7: "E D F C Z P",
+        eyeTestRow_8: "F E L O P Z D",
+        eyeTestRow_9: "D E F P O T E C",
+        eyeTestRow_10: "L E F O D P C T",
+        eyeTestRow_11: "F D P L T C E O",
     },
     ru: {
         leftRight: "Лево <-> Право",
         beginIn: "Начало через",
         getReady: "Приготовтесь",
         upAndDown: "Верх <-> Низ",
-        appName: "Тренер для глаз",
+        appName: "Фитнес для глаз",
         disclaimer: "Заявления об отказе от ответственности: {0}",
-        disclaimerTextPart1: "Пожалуйста проконсультируйтесь со свои доктором прежде чем начать упражнения." +
+        disclaimerTextPart1: "Пожалуйста проконсультируйтесь со своим доктором прежде чем начать упражнения." +
             " Нельза одевать конткатные линзы перед, во времмя и после упражнения." +
             " Начиная урпажнения вы соглашаетесь использовать данный веб ресурс на свой собственный риск.",
         startExercise: "Начните упражнение выбрав сложность",
@@ -54,5 +66,6 @@ export const strings = new LocalizedStrings({
         upRight: "Верх право",
         downLeft: "Низ лево",
         downRight: "Низ право",
+        selfTestTitle: "Самостоятельная проверка",
     }
 });
