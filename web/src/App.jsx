@@ -6,7 +6,6 @@ import {languages, strings} from "./languages/localizationStrings";
 import LanguageSwitch from "./components/LanguageSwitch";
 import { Cookies } from 'react-cookie';
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
