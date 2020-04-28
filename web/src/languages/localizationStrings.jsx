@@ -1,6 +1,12 @@
 import LocalizedStrings from 'react-localization';
+import { Cookies } from 'react-cookie';
 
-export const strings = new LocalizedStrings({
+export const languages = [{ name: "En", locale: "en"},
+                         { name: "Ru", locale: "ru"}];
+
+
+
+const translations = new LocalizedStrings({
     en: {
         leftRight: "Left <-> Right",
         beginIn: "Begin in",
@@ -69,3 +75,16 @@ export const strings = new LocalizedStrings({
         selfTestTitle: "Самостоятельная проверка",
     }
 });
+
+
+let lang = new Cookies().get("lang");
+if (lang !== undefined) {
+    for(let ll of languages) {
+        if (ll.locale === lang) {
+            console.log("set lang: ", lang);
+            translations.setLanguage(lang);
+        }
+    }
+}
+
+export const strings = translations;

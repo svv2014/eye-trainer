@@ -1,0 +1,15 @@
+.langContainer {
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.lang{
+    cursor: pointer;
+    margin: 10px;
+}
+
+.currentLang{
+    color: gray;
+}

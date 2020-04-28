@@ -10,7 +10,7 @@ module.exports = {
   use: [
     react({
       html: {
-        title: 'web'
+        title: 'Eye Fitness'
       }
     }),
   ]
