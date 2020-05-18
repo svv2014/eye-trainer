@@ -1,5 +1,6 @@
 # exclude build
 build
+EyeFitnessApp
 .idea
 # eclude firebase
 public

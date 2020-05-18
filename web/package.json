@@ -33,6 +33,7 @@
   "devDependencies": {
     "@neutrinojs/react": "^9.1.0",
     "copy-webpack-plugin": "^5.1.1",
+    "favicons-webpack-plugin": "^3.0.1",
     "neutrino": "^9.1.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",

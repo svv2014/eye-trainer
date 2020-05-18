@@ -3,6 +3,7 @@
 // Neutrino's inspect feature can be used to view/export the generated configuration.
 const neutrino = require('neutrino');
 const CopyPlugin = require('copy-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const merge = require('webpack-merge');
 
 module.exports = neutrino().webpack();
@@ -13,5 +14,6 @@ module.exports = merge(module.exports, {
         new CopyPlugin([
             { from: 'resources', to: '../public/res' },
         ]),
+        new FaviconsWebpackPlugin('./src/icon.png')
     ],
 });

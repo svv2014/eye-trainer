@@ -13,6 +13,13 @@ const translations = new LocalizedStrings({
         getReady: "Get ready",
         upAndDown: "Up <-> Down",
         appName: "Eye Fitness",
+        privacyPolicy: "Privacy Policy",
+        support: "App Support",
+        supportEmail: "Email: dev.samsklepal@gmail.com",
+        privacyPolicyPersonal: "Collection and Use of Personal Information",
+        privacyPolicyPersonalText: "We don't collect and don't use any personal information.",
+        privacyPolicyNonPersonal: "Collection and Use of Non Personal Information",
+        privacyPolicyNonPersonalText: "We don't collect and don't use any non personal information.",
         disclaimer: "Disclaimer: {0}",
         disclaimerTextPart1: "Please check with your Eye Doctor fist before starting exercises.\n" +
             " Contact lenses cannot be worn before, during, after doing exercises.\n" +

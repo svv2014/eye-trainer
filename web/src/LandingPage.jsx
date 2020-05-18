@@ -23,6 +23,8 @@ import {
 } from "./tools/ExersiseUtils";
 import {strings} from "./languages/localizationStrings";
 import SelfTest from "./pages/SelfTest";
+import AppPolicy from "./pages/AppPolicy";
+import Support from "./pages/Support";
 
 function goBack() {
     window.history.back();
@@ -94,6 +96,12 @@ const LandingPage = () =>
                     <Route path="/exerciseAdvanced2">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
                         <Exercise1 activities={advanced2}/>
+                    </Route>
+                    <Route path="/policy">
+                        <AppPolicy/>
+                    </Route>
+                    <Route path="/support">
+                        <Support/>
                     </Route>
                     <Route path="/welcome"><App/></Route>
                 </Switch>
