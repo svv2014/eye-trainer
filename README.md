@@ -1,4 +1,4 @@
-# Eyes Trainer
+# Eye Fitness Web Page
 
 ## Install 
     
