@@ -12,7 +12,7 @@ module.exports = neutrino().webpack();
 module.exports = merge(module.exports, {
     plugins: [
         new CopyPlugin([
-            { from: 'resources', to: '../public/res' },
+            { from: 'res', to: '../public/res' },
         ]),
         new FaviconsWebpackPlugin('./src/icon.png')
     ],

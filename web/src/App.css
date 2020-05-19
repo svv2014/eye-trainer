@@ -21,3 +21,13 @@
 .start-button:hover {
   color: gray;
 }
+
+.storeBadges {
+}
+.googlePlayLogoImage {
+  height: 60px;
+}
+.appStoreImage {
+  height: 40px;
+  margin: 10px;
+}
