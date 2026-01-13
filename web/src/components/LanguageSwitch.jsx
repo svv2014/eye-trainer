@@ -23,8 +23,8 @@ class LanguageSwitch extends React.Component {
 
     changeButtonState = (lang) => {
 
-        if (this.props.onLanguegeChange && lang !== this.state.language) {
-            this.props.onLanguegeChange(lang);
+        if (this.props.onLanguageChange && lang !== this.state.language) {
+            this.props.onLanguageChange(lang);
         }
     }
 

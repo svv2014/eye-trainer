@@ -59,6 +59,13 @@ const translations = new LocalizedStrings({
         getReady: "Приготовтесь",
         upAndDown: "Верх <-> Низ",
         appName: "Фитнес для глаз",
+        privacyPolicy: "Политика конфиденциальности",
+        support: "Поддержка приложения",
+        supportEmail: "Email: dev.samsklepal@gmail.com",
+        privacyPolicyPersonal: "Сбор и использование личной информации",
+        privacyPolicyPersonalText: "Мы не собираем и не используем личную информацию.",
+        privacyPolicyNonPersonal: "Сбор и использование неличной информации",
+        privacyPolicyNonPersonalText: "Мы не собираем и не используем неличную информацию.",
         disclaimer: "Заявления об отказе от ответственности: {0}",
         disclaimerTextPart1: "Пожалуйста проконсультируйтесь со своим доктором прежде чем начать упражнения." +
             " Нельзя одевать контактные линзы перед, во время и после упражнения." +
@@ -80,6 +87,17 @@ const translations = new LocalizedStrings({
         downLeft: "Низ лево",
         downRight: "Низ право",
         selfTestTitle: "Самостоятельная проверка",
+        eyeTestRow_1: "E",
+        eyeTestRow_2: "F P",
+        eyeTestRow_3: "T O Z",
+        eyeTestRow_4: "P D C",
+        eyeTestRow_5: "L P E D",
+        eyeTestRow_6: "P E C F D",
+        eyeTestRow_7: "E D F C Z P",
+        eyeTestRow_8: "F E L O P Z D",
+        eyeTestRow_9: "D E F P O T E C",
+        eyeTestRow_10: "L E F O D P C T",
+        eyeTestRow_11: "F D P L T C E O",
     }
 });
 

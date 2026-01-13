@@ -8,7 +8,7 @@ import {
     ACTIVITY_TYPE_DELAY,
     ACTIVITY_TYPE_EXERCISE, ACTIVITY_TYPE_FINISH,
     startExercise
-} from "../tools/ExersiseUtils";
+} from "../tools/ExerciseUtils";
 import {unsubscribeIfCan} from "../tools/rxTools";
 import Eyes from "../components/Eyes";
 import PauseButton from "../components/PauseButton";
