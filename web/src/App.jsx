@@ -28,16 +28,8 @@ class App extends React.Component {
     render() {
         return (<div className="App">
             <LanguageSwitch language={this.state.language} languages={languages}
-                            onLanguegeChange={(lang) => this.changeLanguage(lang)}/>
+                            onLanguageChange={(lang) => this.changeLanguage(lang)}/>
             <h1 className={"pageTitle"}>{strings.appName}</h1>
-            <div className={"storeBadges"}>
-                <a href='https://play.google.com/store/apps/details?id=ca.eyefitness.app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-                    <img alt='Get it on Google Play' className={"googlePlayLogoImage"}
-                         src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
-                <a href='https://apps.apple.com/ca/app/eye-fitness-app/id1513814492'>
-                    <img alt='Get it on App Store' className={"appStoreImage"}
-                         src='res/AppStoreBalck.png'/></a>
-            </div>
             <h3 className={"textGray"}>{strings.formatString(strings.disclaimer, strings.disclaimerTextPart1)}</h3>
             <br/>
             <h2>{strings.startExercise}</h2>

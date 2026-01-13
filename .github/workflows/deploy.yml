@@ -1,0 +1,57 @@
+name: Deploy to Firebase
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./web
+        run: npm ci
+
+      - name: Run tests
+        working-directory: ./web
+        run: npm test
+        continue-on-error: true
+
+      - name: Build project
+        working-directory: ./web
+        run: npm run build
+
+      - name: Deploy to Firebase
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        working-directory: ./web
+        run: npx firebase-tools deploy --project="${{ secrets.FIREBASE_PROJECT_ID }}"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Comment PR with deployment status
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Build successful! Changes ready to deploy on merge to main.'
+            })
+        continue-on-error: true

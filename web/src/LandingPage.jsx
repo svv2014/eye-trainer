@@ -20,7 +20,7 @@ import {
     exerciseLeftRight, exerciseRoundLeft, exerciseRoundRight,
     exerciseUpDown,
     exerciseUpLeftDownRight, exerciseUpRightDownLeft
-} from "./tools/ExersiseUtils";
+} from "./tools/ExerciseUtils";
 import {strings} from "./languages/localizationStrings";
 import SelfTest from "./pages/SelfTest";
 import AppPolicy from "./pages/AppPolicy";
