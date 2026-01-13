@@ -185,7 +185,7 @@ The application supports English and Russian languages. To add a new language:
 
 ## License
 
-ISC
+Apache-2.0
 
 ## Support
 
