@@ -1,4 +1,3 @@
-import {hot} from 'react-hot-loader';
 import React from 'react';
 import './LandingPage.css';
 import {
@@ -109,4 +108,4 @@ const LandingPage = () =>
         </Router>
     );
 
-export default hot(module)(LandingPage);
+export default LandingPage;

@@ -1,5 +1,4 @@
 import './PauseButton.css';
-import {hot} from "react-hot-loader";
 import React from 'react';
 import './LanguageSwitch.css';
 
@@ -40,4 +39,4 @@ class LanguageSwitch extends React.Component {
     };
 }
 
-export default hot(module)(LanguageSwitch);
+export default LanguageSwitch;

@@ -1,4 +1,3 @@
-import {hot} from 'react-hot-loader';
 import React from 'react';
 import '../css/common.css';
 import './AppPolicy.css';
@@ -35,4 +34,4 @@ class AppPolicy extends React.Component {
     }
 }
 
-export default hot(module)(AppPolicy);
+export default AppPolicy;

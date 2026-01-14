@@ -1,6 +1,5 @@
 import {strings} from "../languages/localizationStrings";
 import React from "react";
-import {hot} from "react-hot-loader";
 import "../css/SelfTest.css"
 
 let eyeTestRows = [ {text: strings.eyeTestRow_1, size: 100},
@@ -26,4 +25,4 @@ const SelfTest = () => (
     </div>
 );
 
-export default hot(module)(SelfTest);
+export default SelfTest;

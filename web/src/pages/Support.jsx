@@ -1,4 +1,3 @@
-import {hot} from 'react-hot-loader';
 import React from 'react';
 import '../css/common.css';
 import './Support.css';
@@ -32,4 +31,4 @@ class Support extends React.Component {
     }
 }
 
-export default hot(module)(Support);
+export default Support;

@@ -11,7 +11,6 @@ import {
     ACTION_UP_LEFT,
     ACTION_UP_RIGHT
 } from "../tools/EyeActions";
-import {hot} from "react-hot-loader";
 import React from 'react';
 
 
@@ -83,4 +82,4 @@ class Eyes extends React.Component {
     };
 }
 
-export default hot(module)(Eyes);
+export default Eyes;

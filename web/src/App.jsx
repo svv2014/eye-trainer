@@ -1,4 +1,3 @@
-import {hot} from 'react-hot-loader';
 import React from 'react';
 import './css/common.css';
 import './App.css';
@@ -45,4 +44,4 @@ class App extends React.Component {
     }
 }
 
-export default hot(module)(App);
+export default App;
