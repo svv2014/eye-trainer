@@ -26,6 +26,11 @@ class Support extends React.Component {
     render() {
         return (<div className="App">
             <h1 className={"pageTitle"}>{strings.support}</h1>
+            <br/>
+            <h2>{strings.motto}</h2>
+            <p className={"textGray"}>{strings.missionStatement}</p>
+            <br/>
+            <br/>
             <h2 className={"pageTitle"}>{strings.supportEmail}</h2>
         </div>)
     }

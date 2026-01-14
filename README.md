@@ -4,6 +4,13 @@ A web-based eye exercise and vision training application designed to help users 
 
 **Website:** https://eyefitness.ca
 
+## Mission
+
+> **Because healthy eyes shouldn't cost a thing.**
+> *Free vision training for a healthier world.*
+
+Eye Fitness is built on a simple belief: health should be accessible to everyone, not just those who can afford it. Your vision is too important to be locked behind paywalls and subscriptions. That's why Eye Fitness is, and always will be, completely free. No trials, no premium features, no hidden costs—just effective eye training exercises available to anyone with an internet connection. Because when it comes to health, everyone deserves equal access.
+
 ## Features
 
 - **Multiple Exercise Difficulty Levels:** Easy, Medium, Tough, and Tough x2

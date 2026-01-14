@@ -29,6 +29,9 @@ class App extends React.Component {
             <LanguageSwitch language={this.state.language} languages={languages}
                             onLanguageChange={(lang) => this.changeLanguage(lang)}/>
             <h1 className={"pageTitle"}>{strings.appName}</h1>
+            <h2 className={"textGray"}>{strings.motto}</h2>
+            <p className={"textGray"}><i>{strings.mottoTagline}</i></p>
+            <br/>
             <h3 className={"textGray"}>{strings.formatString(strings.disclaimer, strings.disclaimerTextPart1)}</h3>
             <br/>
             <h2>{strings.startExercise}</h2>
