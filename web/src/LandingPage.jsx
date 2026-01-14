@@ -24,7 +24,6 @@ import {strings} from "./languages/localizationStrings";
 import SelfTest from "./pages/SelfTest";
 import AppPolicy from "./pages/AppPolicy";
 import Support from "./pages/Support";
-import Dashboard from "./pages/Dashboard";
 
 function goBack() {
     window.history.back();
@@ -76,10 +75,7 @@ const LandingPage = () =>
         <Router>
             <div>
                 <Switch>
-                    <Redirect exact from="/" to="/dashboard"/>
-                    <Route path="/dashboard">
-                        <Dashboard/>
-                    </Route>
+                    <Redirect exact from="/" to="/welcome"/>
                     <Route path="/selfTest">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
                         <SelfTest/>

@@ -20,22 +20,45 @@ class LanguageSwitch extends React.Component {
         }
     }
 
-    changeButtonState = (lang) => {
-
+    changeButtonState = (lang, langName) => {
         if (this.props.onLanguageChange && lang !== this.state.language) {
             this.props.onLanguageChange(lang);
+            this.announceLanguageChange(langName);
         }
     }
 
+    announceLanguageChange = (langName) => {
+        // Announce language change to screen readers
+        const announcement = document.createElement('div');
+        announcement.setAttribute('role', 'status');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.className = 'sr-only';
+        announcement.textContent = `Language changed to ${langName}`;
+        document.body.appendChild(announcement);
+        setTimeout(() => announcement.remove(), 1000);
+    }
+
     render() {
-        let selectedLang = this.state.language;
         return (
-            <div className={"langContainer"}>
-                {this.state.languages.map((lang) =>
-                    <a key={lang.locale} onClick={() => this.changeButtonState(lang.locale)}
-                       className={"lang " + (lang.locale === this.state.language ? " currentLang" : "")}>{lang.name}</a>
-                )}
-            </div>)
+            <nav role="navigation" aria-label="Choose language">
+                <div className="langContainer" role="group">
+                    <span className="lang-icon" aria-hidden="true">🌐</span>
+                    {this.state.languages.map((lang) =>
+                        <button
+                            key={lang.locale}
+                            onClick={() => this.changeButtonState(lang.locale, lang.name)}
+                            className={"lang-button" + (lang.locale === this.state.language ? " active" : "")}
+                            aria-label={`Change language to ${lang.name}`}
+                            aria-current={lang.locale === this.state.language ? "true" : undefined}
+                            disabled={lang.locale === this.state.language}
+                            type="button"
+                        >
+                            {lang.name}
+                        </button>
+                    )}
+                </div>
+            </nav>
+        )
     };
 }
 
