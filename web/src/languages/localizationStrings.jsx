@@ -1,9 +1,9 @@
 import LocalizedStrings from 'react-localization';
 import { Cookies } from 'react-cookie';
 
-export const languages = [{ name: "En", locale: "en"},
-                         { name: "Fr", locale: "fr"},
-                         { name: "Ru", locale: "ru"}];
+export const languages = [{ name: "English", locale: "en"},
+                         { name: "Français", locale: "fr"},
+                         { name: "Русский", locale: "ru"}];
 
 
 

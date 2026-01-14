@@ -1,15 +1,136 @@
-.langContainer {
-    color: white;
+/* Screen reader only (for announcements) */
+.sr-only {
     position: absolute;
-    top: 0;
-    right: 0;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
-.lang{
+/* Language selector container */
+.langContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 4px;
+}
+
+/* Globe icon */
+.lang-icon {
+    font-size: 18px;
+    margin-right: 4px;
+    opacity: 0.7;
+}
+
+/* Language buttons */
+.lang-button {
+    background: none;
+    border: 2px solid transparent;
+    color: #cccccc;
     cursor: pointer;
-    margin: 10px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
-.currentLang{
-    color: gray;
+/* Hover state */
+.lang-button:hover:not(:disabled) {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Focus state (keyboard navigation) */
+.lang-button:focus-visible {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+    color: white;
+}
+
+/* Active/Selected state */
+.lang-button.active,
+.lang-button:disabled {
+    color: white;
+    background: rgba(74, 144, 226, 0.2);
+    border-color: #4a90e2;
+    font-weight: 600;
+    cursor: default;
+}
+
+/* Checkmark for active language */
+.lang-button.active::after {
+    content: '✓';
+    margin-left: 4px;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* Active state animation */
+.lang-button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .langContainer {
+        gap: 6px;
+    }
+
+    .lang-button {
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+
+    .lang-icon {
+        font-size: 16px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .langContainer {
+        gap: 4px;
+    }
+
+    .lang-button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .lang-icon {
+        font-size: 14px;
+        margin-right: 2px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .lang-button {
+        border-width: 2px;
+    }
+
+    .lang-button.active {
+        border-color: currentColor;
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .lang-button {
+        transition: none;
+    }
+
+    .lang-button:hover:not(:disabled) {
+        transform: none;
+    }
 }
