@@ -26,9 +26,15 @@ class App extends React.Component {
 
     render() {
         return (<div className="App">
-            <LanguageSwitch language={this.state.language} languages={languages}
-                            onLanguageChange={(lang) => this.changeLanguage(lang)}/>
+            <div className="top-nav">
+                <a href="/dashboard" className="nav-link">{strings.dashboard}</a>
+                <LanguageSwitch language={this.state.language} languages={languages}
+                                onLanguageChange={(lang) => this.changeLanguage(lang)}/>
+            </div>
             <h1 className={"pageTitle"}>{strings.appName}</h1>
+            <h2 className={"textGray"}>{strings.motto}</h2>
+            <p className={"textGray"}><i>{strings.mottoTagline}</i></p>
+            <br/>
             <h3 className={"textGray"}>{strings.formatString(strings.disclaimer, strings.disclaimerTextPart1)}</h3>
             <br/>
             <h2>{strings.startExercise}</h2>
@@ -39,6 +45,11 @@ class App extends React.Component {
             <a href={"exerciseAdvanced"} className={"start-button"}>{strings.tough}</a>
             <a href={"exerciseAdvanced2"} className={"start-button"}>{strings.tough + " x2"}</a>
             <h2><a href={"selfTest"} className={"start-button"}>{strings.selfTestTitle}</a></h2>
+
+            <div className={"quebec-badge"}>
+                <p className={"textGray"}><small>{strings.builtInQuebec}</small></p>
+                <p className={"textGray"}><small><i>{strings.peopleDriven}</i></small></p>
+            </div>
 
         </div>)
     }

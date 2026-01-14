@@ -3,23 +3,56 @@
   height: 100%;
 }
 
-.start-button{
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #333;
+}
+
+.nav-link {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.start-button {
   color: white;
   display: block;
-  background-color: black;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
   position: relative;
   font-family: sans-serif;
-  font-size: 33px;
+  font-size: 28px;
+  font-weight: 600;
   cursor: pointer;
-  border-left: 2px;
-  border-color: white;
-  margin: auto;
-  padding-top: 10px;
+  border: 2px solid #444;
+  border-radius: 12px;
+  margin: 16px auto;
+  padding: 20px 32px;
   text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  max-width: 400px;
 }
 
 .start-button:hover {
-  color: gray;
+  background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+  border-color: #666;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.start-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .storeBadges {
@@ -30,4 +63,15 @@
 .appStoreImage {
   height: 40px;
   margin: 10px;
+}
+
+.quebec-badge {
+  margin-top: 48px;
+  padding: 16px;
+  text-align: center;
+  border-top: 1px solid #333;
+}
+
+.quebec-badge p {
+  margin: 4px 0;
 }
