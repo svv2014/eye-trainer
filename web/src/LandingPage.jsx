@@ -24,6 +24,7 @@ import {strings} from "./languages/localizationStrings";
 import SelfTest from "./pages/SelfTest";
 import AppPolicy from "./pages/AppPolicy";
 import Support from "./pages/Support";
+import Dashboard from "./pages/Dashboard";
 
 function goBack() {
     window.history.back();
@@ -75,26 +76,29 @@ const LandingPage = () =>
         <Router>
             <div>
                 <Switch>
-                    <Redirect exact from="/" to="/welcome"/>
+                    <Redirect exact from="/" to="/dashboard"/>
+                    <Route path="/dashboard">
+                        <Dashboard/>
+                    </Route>
                     <Route path="/selfTest">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
                         <SelfTest/>
                     </Route>
                     <Route path="/exerciseBeginner">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
-                        <Exercise1 activities={beginner}/>
+                        <Exercise1 activities={beginner} difficulty="beginner"/>
                     </Route>
                     <Route path="/exerciseIntermediate">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
-                        <Exercise1 activities={intermediate}/>
+                        <Exercise1 activities={intermediate} difficulty="intermediate"/>
                     </Route>
                     <Route path="/exerciseAdvanced">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
-                        <Exercise1 activities={advanced}/>
+                        <Exercise1 activities={advanced} difficulty="advanced"/>
                     </Route>
                     <Route path="/exerciseAdvanced2">
                         <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft}/></a>
-                        <Exercise1 activities={advanced2}/>
+                        <Exercise1 activities={advanced2} difficulty="advanced2"/>
                     </Route>
                     <Route path="/policy">
                         <AppPolicy/>

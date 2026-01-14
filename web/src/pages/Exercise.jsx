@@ -14,6 +14,7 @@ import Eyes from "../components/Eyes";
 import PauseButton from "../components/PauseButton";
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import {strings} from "../languages/localizationStrings";
+import ProgressTracking from "../tools/progressTracking";
 
 
 const winSize = 'winSize';
@@ -34,7 +35,9 @@ class Exercise extends React.Component {
             play: this.play,
             currentExercise: undefined,
             exercises: props.activities,
-            startDelay: props.startDelay
+            startDelay: props.startDelay,
+            difficulty: props.difficulty,
+            sessionRecorded: false
         };
         this.subscription = this.resultDebounce.subscribe(x => {
             if (x.action === winSize) {
@@ -66,11 +69,19 @@ class Exercise extends React.Component {
         console.log("start set", setId)
         this.currentSetId = setId;
         let next = this.state.exercises.length > setId + 1 ? this.state.exercises[setId + 1] : undefined;
+        let currentSet = this.state.exercises[setId];
+
         this.setState({
-            currentExerciseSet: this.state.exercises[setId],
+            currentExerciseSet: currentSet,
             nextExerciseSet: next,
             currentExercise: undefined
         });
+
+        // Record session completion when reaching FINISH type
+        if (currentSet?.type === ACTIVITY_TYPE_FINISH && !this.state.sessionRecorded) {
+            this.recordSessionCompletion();
+        }
+
         this.startExercise(this.state.exercises[setId])
 
         // unsubscribeIfCan(this.delaySubscription);
@@ -83,6 +94,21 @@ class Exercise extends React.Component {
         //         this.startExercise(this.state.exercises[setId])
         //     }
         // );
+    }
+
+    recordSessionCompletion() {
+        const difficulty = this.state.difficulty || 'beginner';
+        console.log("Recording session completion for difficulty:", difficulty);
+
+        const progress = ProgressTracking.recordSession(difficulty);
+        this.setState({ sessionRecorded: true });
+
+        // Check if any new badges were awarded
+        const newBadges = ProgressTracking.checkAndAwardBadges(progress);
+        if (newBadges.length > 0) {
+            console.log("New badges earned:", newBadges);
+            // You could show a toast or modal here in the future
+        }
     }
 
     startExercise(exercise, lastPosition) {

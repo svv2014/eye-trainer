@@ -1,0 +1,242 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+}
+
+.stat-card {
+    background-color: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #555;
+}
+
+.stat-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    margin: 8px 0;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #aaa;
+    margin: 4px 0;
+}
+
+.stat-sublabel {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* Section Styling */
+.section {
+    margin: 48px 0;
+}
+
+.section h2 {
+    color: white;
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    background-color: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.calendar-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.legend-label {
+    font-size: 12px;
+    color: #666;
+    margin: 0 8px;
+}
+
+.legend-item {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.calendar-weeks {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.calendar-week {
+    display: flex;
+    gap: 3px;
+}
+
+.calendar-day {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.calendar-day:not(.empty):hover {
+    transform: scale(1.3);
+    border: 1px solid white;
+}
+
+.calendar-day.empty {
+    background-color: transparent;
+}
+
+.calendar-day.level-0 {
+    background-color: #1a1a1a;
+}
+
+.calendar-day.level-1 {
+    background-color: #0e4429;
+}
+
+.calendar-day.level-2 {
+    background-color: #006d32;
+}
+
+.calendar-day.level-3 {
+    background-color: #26a641;
+}
+
+.calendar-day.level-4 {
+    background-color: #39d353;
+}
+
+/* Badges Grid */
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+}
+
+.badge-item {
+    background-color: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.badge-item:hover {
+    transform: scale(1.05);
+    border-color: #555;
+}
+
+.badge-icon {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.badge-name {
+    font-size: 12px;
+    color: #aaa;
+    word-wrap: break-word;
+}
+
+.no-badges {
+    text-align: center;
+    font-style: italic;
+    padding: 32px;
+}
+
+/* Call to Action */
+.cta-section {
+    text-align: center;
+    margin: 48px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 16px 48px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .badges-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 12px;
+    }
+
+    .calendar-day {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-day {
+        width: 8px;
+        height: 8px;
+    }
+}
