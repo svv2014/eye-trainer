@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -38,8 +39,7 @@ jobs:
 
       - name: Deploy to Firebase
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        working-directory: ./web
-        run: npx firebase-tools deploy --project="${{ secrets.FIREBASE_PROJECT_ID }}"
+        run: npx firebase-tools deploy --only hosting --project="${{ secrets.FIREBASE_PROJECT_ID }}"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 

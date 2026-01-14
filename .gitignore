@@ -4,5 +4,6 @@ EyeFitnessApp
 .idea
 # eclude firebase
 public
-.fireb*
-fireb*
+.firebase/
+firebase-debug.log
+!firebase.json
