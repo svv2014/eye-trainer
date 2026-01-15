@@ -83,6 +83,21 @@
 @media (max-width: 768px) {
     .langContainer {
         gap: 6px;
+        overflow-x: auto;
+        white-space: nowrap;
+        max-width: 60vw;
+        /* Limit width to trigger scroll on small screens */
+        padding-bottom: 4px;
+        /* Space for scrollbar if visible */
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scroll on iOS */
+        scrollbar-width: none;
+        /* Firefox: Hide scrollbar */
+    }
+
+    /* Hide scrollbar for Chrome/Safari/Opera */
+    .langContainer::-webkit-scrollbar {
+        display: none;
     }
 
     .lang-button {
