@@ -11,19 +11,49 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 32px;
-  border-bottom: 1px solid #222;
-  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid var(--border-primary);
+  background: var(--bg-overlay);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .nav-brand {
-  color: white;
+  color: var(--text-primary);
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.5px;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-icon-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.nav-icon-btn.active {
+  color: var(--accent-primary);
 }
 
 /* Hero Section */
@@ -38,7 +68,7 @@
   font-size: 56px;
   font-weight: 800;
   margin: 0 0 24px;
-  background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-tertiary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -47,14 +77,14 @@
 
 .hero-subtitle {
   font-size: 24px;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin: 0 0 12px;
   font-weight: 500;
 }
 
 .hero-tagline {
   font-size: 16px;
-  color: #888888;
+  color: var(--text-muted);
   font-style: italic;
   margin: 0;
 }
@@ -68,13 +98,14 @@
 }
 
 .disclaimer-box {
-  background: rgba(255, 200, 0, 0.1);
-  border: 1px solid rgba(255, 200, 0, 0.3);
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
   border-radius: 12px;
   padding: 20px 24px;
   display: flex;
   align-items: flex-start;
   gap: 16px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .disclaimer-icon {
@@ -84,7 +115,7 @@
 }
 
 .disclaimer-text {
-  color: #e0e0e0;
+  color: var(--warning-text);
   font-size: 14px;
   line-height: 1.6;
   margin: 0;
@@ -108,12 +139,12 @@
   font-size: 36px;
   font-weight: 700;
   margin: 0 0 16px;
-  color: white;
+  color: var(--text-primary);
 }
 
 .section-description {
   font-size: 18px;
-  color: #aaaaaa;
+  color: var(--text-tertiary);
   margin: 0;
 }
 
@@ -126,8 +157,8 @@
 }
 
 .exercise-card {
-  background: linear-gradient(135deg, #1a1a1a 0%, #111111 100%);
-  border: 2px solid #2a2a2a;
+  background: linear-gradient(135deg, var(--card-gradient-start) 0%, var(--card-gradient-end) 100%);
+  border: 2px solid var(--border-secondary);
   border-radius: 16px;
   padding: 32px 24px;
   text-align: center;
@@ -151,9 +182,9 @@
 }
 
 .exercise-card:hover {
-  border-color: #4a4a4a;
+  border-color: var(--border-hover);
   transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-card);
 }
 
 .exercise-card:hover::before {
@@ -161,20 +192,20 @@
 }
 
 .card-featured {
-  border-color: #4a90e2;
-  background: linear-gradient(135deg, #1a2a3a 0%, #111820 100%);
+  border-color: var(--accent-primary);
+  background: linear-gradient(135deg, var(--card-featured-start) 0%, var(--card-featured-end) 100%);
 }
 
 .card-featured:hover {
-  border-color: #6aa8ff;
-  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.3);
+  border-color: var(--accent-primary-hover);
+  box-shadow: var(--shadow-featured);
 }
 
 .card-badge {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: #4a90e2;
+  background: var(--accent-primary);
   color: white;
   font-size: 10px;
   font-weight: 700;
@@ -192,13 +223,13 @@
 .card-title {
   font-size: 24px;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   margin: 0 0 12px;
 }
 
 .card-description {
   font-size: 14px;
-  color: #999999;
+  color: var(--text-muted);
   margin: 0 0 16px;
   line-height: 1.5;
 }
@@ -206,7 +237,7 @@
 .card-duration {
   display: inline-block;
   background: rgba(255, 255, 255, 0.05);
-  color: #cccccc;
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 500;
   padding: 6px 16px;
@@ -214,10 +245,15 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+[data-theme="light"] .card-duration {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
 /* Divider */
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #333 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--divider-color) 50%, transparent 100%);
   margin: 48px 0;
 }
 
@@ -226,8 +262,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-  border: 2px solid #2a2a2a;
+  background: linear-gradient(135deg, var(--card-gradient-start) 0%, var(--bg-tertiary) 100%);
+  border: 2px solid var(--border-secondary);
   border-radius: 16px;
   padding: 24px 28px;
   text-decoration: none;
@@ -237,9 +273,9 @@
 }
 
 .self-test-button:hover {
-  border-color: #4a4a4a;
+  border-color: var(--border-hover);
   transform: translateX(4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-card);
 }
 
 .test-icon {
@@ -255,33 +291,34 @@
 .test-title {
   font-size: 22px;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   margin: 0 0 6px;
 }
 
 .test-description {
   font-size: 14px;
-  color: #999999;
+  color: var(--text-muted);
   margin: 0;
 }
 
 .arrow-icon {
   font-size: 24px;
-  color: #666666;
+  color: var(--text-muted-dark);
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
 .self-test-button:hover .arrow-icon {
   transform: translateX(6px);
-  color: white;
+  color: var(--text-primary);
 }
 
 /* Footer */
 .footer {
-  border-top: 1px solid #222;
+  border-top: 1px solid var(--border-primary);
   padding: 32px 24px;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--bg-overlay-light);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .footer-content {
@@ -291,13 +328,13 @@
 }
 
 .footer-text {
-  color: #888888;
+  color: var(--text-muted);
   font-size: 14px;
   margin: 0 0 8px;
 }
 
 .footer-subtext {
-  color: #666666;
+  color: var(--text-muted-dark);
   font-size: 13px;
   font-style: italic;
   margin: 0;
@@ -311,6 +348,11 @@
 
   .nav-brand {
     font-size: 18px;
+  }
+
+  .nav-icon-btn {
+    font-size: 18px;
+    padding: 6px;
   }
 
   .hero-section {

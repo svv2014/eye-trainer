@@ -28,20 +28,21 @@
   margin: 20%;
   width: 25%;
   height: 25%;
-  border: solid 1px #000;
+  border: solid 1px var(--eye-border);
   border-radius:  75% 15%;
   transform: rotate(45deg);
-  background-color: white;
+  background-color: var(--eye-bg);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .eye:before {
   content: '';
   display: block;
   position: absolute;
-  background-color: black;
+  background-color: var(--eye-pupil);
   width: 30%;
   height: 30%;
-  border: solid 1px #000;
+  border: solid 1px var(--eye-border);
   border-radius: 50%;
   left: 33%;
   top: 33%;

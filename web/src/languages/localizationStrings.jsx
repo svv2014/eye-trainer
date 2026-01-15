@@ -76,6 +76,22 @@ const translations = new LocalizedStrings({
         today: "Today",
         lesActivity: "Less",
         moreActivity: "More",
+        // Theme and audio
+        lightMode: "Switch to Light Mode",
+        darkMode: "Switch to Dark Mode",
+        audioOn: "Voice Guidance On",
+        audioOff: "Voice Guidance Off",
+        // Audio directions
+        lookLeft: "Look left",
+        lookRight: "Look right",
+        lookUp: "Look up",
+        lookDown: "Look down",
+        lookCenter: "Center",
+        lookUpLeft: "Look up left",
+        lookUpRight: "Look up right",
+        lookDownLeft: "Look down left",
+        lookDownRight: "Look down right",
+        relaxEyes: "Relax",
     },
     fr: {
         leftRight: "Gauche <-> Droite",
@@ -145,6 +161,22 @@ const translations = new LocalizedStrings({
         today: "Aujourd'hui",
         lesActivity: "Moins",
         moreActivity: "Plus",
+        // Theme and audio
+        lightMode: "Passer au mode clair",
+        darkMode: "Passer au mode sombre",
+        audioOn: "Guidage vocal activé",
+        audioOff: "Guidage vocal désactivé",
+        // Audio directions
+        lookLeft: "Regardez à gauche",
+        lookRight: "Regardez à droite",
+        lookUp: "Regardez en haut",
+        lookDown: "Regardez en bas",
+        lookCenter: "Centre",
+        lookUpLeft: "Regardez en haut à gauche",
+        lookUpRight: "Regardez en haut à droite",
+        lookDownLeft: "Regardez en bas à gauche",
+        lookDownRight: "Regardez en bas à droite",
+        relaxEyes: "Détendez-vous",
     },
     ru: {
         leftRight: "Лево <-> Право",
@@ -214,6 +246,22 @@ const translations = new LocalizedStrings({
         today: "Сегодня",
         lesActivity: "Меньше",
         moreActivity: "Больше",
+        // Theme and audio
+        lightMode: "Переключить на светлый режим",
+        darkMode: "Переключить на тёмный режим",
+        audioOn: "Голосовое сопровождение включено",
+        audioOff: "Голосовое сопровождение выключено",
+        // Audio directions
+        lookLeft: "Смотрите влево",
+        lookRight: "Смотрите вправо",
+        lookUp: "Смотрите вверх",
+        lookDown: "Смотрите вниз",
+        lookCenter: "Центр",
+        lookUpLeft: "Смотрите вверх влево",
+        lookUpRight: "Смотрите вверх вправо",
+        lookDownLeft: "Смотрите вниз влево",
+        lookDownRight: "Смотрите вниз вправо",
+        relaxEyes: "Расслабьтесь",
     }
 });
 

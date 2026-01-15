@@ -14,6 +14,8 @@ import Eyes from "../components/Eyes";
 import PauseButton from "../components/PauseButton";
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import {strings} from "../languages/localizationStrings";
+import audioGuide from "../tools/AudioGuide";
+import {getAudioEnabled} from "../tools/localStorage";
 
 
 const winSize = 'winSize';
@@ -25,6 +27,7 @@ class Exercise extends React.Component {
     exerciseSubscription;
     play = true;
     currentExerciseSet;
+    lastSpokenDelay = null;
 
     constructor(props) {
         super(props);
@@ -44,6 +47,10 @@ class Exercise extends React.Component {
     }
 
     componentDidMount() {
+        // Sync audio enabled state
+        audioGuide.setEnabled(getAudioEnabled());
+        // Start ambient background music
+        audioGuide.startAmbient();
         this.playNext();
     }
 
@@ -68,6 +75,24 @@ class Exercise extends React.Component {
         let next = this.state.exercises.length > setId + 1 ? this.state.exercises[setId + 1] : undefined;
         let currentSet = this.state.exercises[setId];
 
+        // Reset audio guide state for new exercise
+        audioGuide.resetLastAction();
+        this.lastSpokenDelay = null;
+
+        // Announce exercise name for EXERCISE type, or special messages for other types
+        if (currentSet.type === ACTIVITY_TYPE_EXERCISE) {
+            audioGuide.speakExerciseName(currentSet.name);
+        } else if (currentSet.type === ACTIVITY_TYPE_DELAY) {
+            // Speak blink or get ready message
+            if (currentSet.name === strings.blink) {
+                audioGuide.speakBlink();
+            } else if (currentSet.name === strings.getReady) {
+                audioGuide.speakGetReady();
+            }
+        } else if (currentSet.type === ACTIVITY_TYPE_FINISH) {
+            audioGuide.speakCompletion();
+        }
+
         this.setState({
             currentExerciseSet: currentSet,
             nextExerciseSet: next,
@@ -75,17 +100,6 @@ class Exercise extends React.Component {
         });
 
         this.startExercise(this.state.exercises[setId])
-
-        // unsubscribeIfCan(this.delaySubscription);
-        // this.delaySubscription = delayCounter(defaultStartDelay).subscribe((dealy) => {
-        //         console.log("delay: ", dealy);
-        //         this.setState({delayCount: dealy.count})
-        //     }, (e) => console.error("delay error: ", e),
-        //     () => {
-        //         this.setState({delayCount: undefined});
-        //         this.startExercise(this.state.exercises[setId])
-        //     }
-        // );
     }
 
     startExercise(exercise, lastPosition) {
@@ -97,6 +111,19 @@ class Exercise extends React.Component {
             currentExercise: lastPosition
         });
         this.exerciseSubscription = startExercise(exercise, lastPosition).subscribe((x) => {
+                // Play direction tone for exercise movements
+                if (exercise.type === ACTIVITY_TYPE_EXERCISE) {
+                    audioGuide.playDirection(x.exercise);
+                }
+                // For delay countdowns, play beeps
+                else if (exercise.type === ACTIVITY_TYPE_DELAY && x.id !== this.lastSpokenDelay) {
+                    // Play beep at 5, 3, 2, 1
+                    if (x.id <= 5 && x.id > 0 && (x.id === 5 || x.id <= 3)) {
+                        audioGuide.playCountdownBeep(x.id);
+                        this.lastSpokenDelay = x.id;
+                    }
+                }
+
                 this.setState({
                     eyeAction: x.exercise,
                     currentExercise: x
@@ -119,6 +146,9 @@ class Exercise extends React.Component {
     componentWillUnmount() {
         unsubscribeIfCan(this.subscription);
         unsubscribeIfCan(this.exerciseSubscription);
+        // Stop audio when leaving
+        audioGuide.cancel();
+        audioGuide.stopAmbient();
     }
 
     onPlayButtonChange = (playButtonState) => {
@@ -135,6 +165,8 @@ class Exercise extends React.Component {
         this.setState({play: this.play});
         if (!this.play) {
             unsubscribeIfCan(this.exerciseSubscription);
+            // Cancel speech when paused
+            audioGuide.cancel();
         } else {
             let lastPosition = this.state.currentExercise?.id === this.currentExerciseSet?.repeat ? undefined : this.state.currentExercise;
             this.startExercise(this.currentExerciseSet, lastPosition);

@@ -13,17 +13,17 @@
 }
 
 .stat-card {
-    background-color: #111;
-    border: 1px solid #333;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-tertiary);
     border-radius: 8px;
     padding: 24px;
     text-align: center;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.2s, border-color 0.2s, background-color 0.3s;
 }
 
 .stat-card:hover {
     transform: translateY(-2px);
-    border-color: #555;
+    border-color: var(--border-hover);
 }
 
 .stat-icon {
@@ -34,19 +34,19 @@
 .stat-value {
     font-size: 36px;
     font-weight: bold;
-    color: white;
+    color: var(--text-primary);
     margin: 8px 0;
 }
 
 .stat-label {
     font-size: 14px;
-    color: #aaa;
+    color: var(--text-tertiary);
     margin: 4px 0;
 }
 
 .stat-sublabel {
     font-size: 12px;
-    color: #666;
+    color: var(--text-muted-dark);
     margin-top: 4px;
 }
 
@@ -56,17 +56,18 @@
 }
 
 .section h2 {
-    color: white;
+    color: var(--text-primary);
     margin-bottom: 24px;
     font-size: 24px;
 }
 
 /* Calendar Grid */
 .calendar-grid {
-    background-color: #111;
-    border: 1px solid #333;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-tertiary);
     border-radius: 8px;
     padding: 24px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .calendar-legend {
@@ -79,7 +80,7 @@
 
 .legend-label {
     font-size: 12px;
-    color: #666;
+    color: var(--text-muted-dark);
     margin: 0 8px;
 }
 
@@ -110,7 +111,7 @@
 
 .calendar-day:not(.empty):hover {
     transform: scale(1.3);
-    border: 1px solid white;
+    border: 1px solid var(--text-primary);
 }
 
 .calendar-day.empty {
@@ -118,7 +119,7 @@
 }
 
 .calendar-day.level-0 {
-    background-color: #1a1a1a;
+    background-color: var(--bg-secondary);
 }
 
 .calendar-day.level-1 {
@@ -145,17 +146,17 @@
 }
 
 .badge-item {
-    background-color: #111;
-    border: 1px solid #333;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-tertiary);
     border-radius: 8px;
     padding: 16px;
     text-align: center;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.2s, border-color 0.2s, background-color 0.3s;
 }
 
 .badge-item:hover {
     transform: scale(1.05);
-    border-color: #555;
+    border-color: var(--border-hover);
 }
 
 .badge-icon {
@@ -165,7 +166,7 @@
 
 .badge-name {
     font-size: 12px;
-    color: #aaa;
+    color: var(--text-tertiary);
     word-wrap: break-word;
 }
 
@@ -173,6 +174,7 @@
     text-align: center;
     font-style: italic;
     padding: 32px;
+    color: var(--text-muted);
 }
 
 /* Call to Action */
@@ -183,7 +185,7 @@
 
 .cta-button {
     display: inline-block;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent-gradient-start) 0%, var(--accent-gradient-end) 100%);
     color: white;
     font-size: 20px;
     font-weight: bold;

@@ -1,15 +1,16 @@
 .pauseButtonContainer {
    width: 100px;
    height: 40px;
-   border: solid white 1px;
+   border: solid var(--text-primary) 1px;
    text-align: center;
    position: relative;
     margin-left: auto;
     margin-right: auto;
+    transition: border-color 0.3s;
  }
 
 .pauseButtonContainer:hover {
-  border: solid white 2px;
+  border: solid var(--text-primary) 2px;
 }
 
 .play {
@@ -17,9 +18,10 @@
 }
 
 .pauseButtonContainer > .icon {
-    color: white;
+    color: var(--text-primary);
     font-size: 25px;
     height: 100%;
+    transition: color 0.3s;
 }
 .pauseButton{
   text-align-all: center;
@@ -28,9 +30,10 @@
   margin: auto;
   width: 0;
   height: 30px;
-  border-color: lightgray;
+  border-color: var(--text-secondary);
   border-style: double;
   border-width: 0px 0px 0px 25px;
+  transition: border-color 0.3s;
 }
 
 .play {
@@ -40,7 +43,8 @@
   border-style: solid;
   box-sizing: border-box;
   border-width: 15px 0px 15px 25px;
-  border-color: transparent transparent transparent white;
+  border-color: transparent transparent transparent var(--text-primary);
+  transition: border-color 0.3s;
 }
 
 .centered {
