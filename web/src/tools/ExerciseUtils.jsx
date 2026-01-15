@@ -1,5 +1,5 @@
-import {of, ReplaySubject} from "rxjs";
-import {concatMap, delay} from "rxjs/operators";
+import { of, ReplaySubject } from "rxjs";
+import { concatMap, delay } from "rxjs/operators";
 import {
     ACTION_CENTER,
     ACTION_DOWN,
@@ -11,7 +11,7 @@ import {
     ACTION_DOWN_LEFT,
     ACTION_UP_LEFT, ACTION_DOWN_RIGHT
 } from "./EyeActions";
-import {strings} from "../languages/localizationStrings";
+import { strings } from "../languages/localizationStrings";
 
 export const ACTIVITY_TYPE_EXERCISE = "exercise"
 export const ACTIVITY_TYPE_DELAY = "delay"
@@ -90,8 +90,8 @@ export const exerciseRoundLeft = (repeat) => {
         name: strings.circleLeft,
         delay: 500,
         moves: [ACTION_UP, ACTION_UP_LEFT, ACTION_LEFT, ACTION_DOWN_LEFT,
-                ACTION_DOWN, ACTION_DOWN_RIGHT, ACTION_RIGHT, ACTION_UP_RIGHT,
-                ACTION_UP, ACTION_CENTER],
+            ACTION_DOWN, ACTION_DOWN_RIGHT, ACTION_RIGHT, ACTION_UP_RIGHT,
+            ACTION_UP, ACTION_CENTER],
         repeat: repeats
     }
 };
@@ -103,8 +103,8 @@ export const exerciseRoundRight = (repeat) => {
         name: strings.circleRight,
         delay: 500,
         moves: [ACTION_UP, ACTION_UP_RIGHT, ACTION_RIGHT, ACTION_DOWN_RIGHT,
-                ACTION_DOWN, ACTION_DOWN_LEFT, ACTION_LEFT, ACTION_UP_LEFT,
-                ACTION_UP, ACTION_CENTER],
+            ACTION_DOWN, ACTION_DOWN_LEFT, ACTION_LEFT, ACTION_UP_LEFT,
+            ACTION_UP, ACTION_CENTER],
         repeat: repeats
     }
 };
@@ -115,11 +115,24 @@ export const delayCounter = (delaySeconds) => {
     let mapDelay = replaySubject.pipe(concatMap(i => of(i).pipe(delay(1000))));
 
     for (let i = delaySeconds; i > -1; i--) {
-        replaySubject.next({count: i});
+        replaySubject.next({ count: i });
     }
     replaySubject.complete();
     return mapDelay;
 }
+
+/**
+ * Calculate the total duration of an exercise set in minutes.
+ * Each activity's duration = delay * moves.length * repeat
+ * @param {Array} activities - Array of exercise activity objects
+ * @returns {number} Total duration in minutes (rounded)
+ */
+export const calculateExerciseDuration = (activities) => {
+    const totalMs = activities.reduce((sum, activity) => {
+        return sum + (activity.delay * activity.moves.length * activity.repeat);
+    }, 0);
+    return Math.round(totalMs / 60000); // Convert to minutes
+};
 
 export const startExercise = (exercise, startFrom) => {
     console.log("start: ", exercise);
@@ -131,10 +144,10 @@ export const startExercise = (exercise, startFrom) => {
             for (let x of exercise.moves) {
                 if (startFrom && startFrom.id !== undefined && !isNaN(startFrom.id)) {
                     if (startFrom.id >= i) {
-                        replaySubject.next({id: i, exercise: x});
+                        replaySubject.next({ id: i, exercise: x });
                     }
                 } else {
-                    replaySubject.next({id: i, exercise: x});
+                    replaySubject.next({ id: i, exercise: x });
                 }
             }
         }
@@ -145,10 +158,10 @@ export const startExercise = (exercise, startFrom) => {
             for (let x of exercise.moves) {
                 if (startFrom && startFrom.id !== undefined && !isNaN(startFrom.id)) {
                     if (startFrom.id <= i) {
-                        replaySubject.next({id: i, exercise: x});
+                        replaySubject.next({ id: i, exercise: x });
                     }
                 } else {
-                    replaySubject.next({id: i, exercise: x});
+                    replaySubject.next({ id: i, exercise: x });
                 }
             }
         }

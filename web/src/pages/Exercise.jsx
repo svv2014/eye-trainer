@@ -1,21 +1,22 @@
 import React from 'react';
 import './Exercise.css';
 import './Animate.css';
-import {connect} from "react-redux";
-import {Subject} from "rxjs";
-import {debounceTime} from "rxjs/operators";
+import { connect } from "react-redux";
+import { Subject } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 import {
     ACTIVITY_TYPE_DELAY,
     ACTIVITY_TYPE_EXERCISE, ACTIVITY_TYPE_FINISH,
     startExercise
 } from "../tools/ExerciseUtils";
-import {unsubscribeIfCan} from "../tools/rxTools";
+import { unsubscribeIfCan } from "../tools/rxTools";
 import Eyes from "../components/Eyes";
 import PauseButton from "../components/PauseButton";
 import KeyboardEventHandler from 'react-keyboard-event-handler';
-import {strings} from "../languages/localizationStrings";
+import { strings } from "../languages/localizationStrings";
 import audioGuide from "../tools/AudioGuide";
-import {getAudioEnabled} from "../tools/localStorage";
+import { getAudioEnabled } from "../tools/localStorage";
+import { trackExerciseStart, trackExerciseComplete, trackExercisePause, trackExerciseResume, trackExerciseAbandon } from "../tools/analytics";
 
 
 const winSize = 'winSize';
@@ -28,6 +29,7 @@ class Exercise extends React.Component {
     play = true;
     currentExerciseSet;
     lastSpokenDelay = null;
+    exerciseStartTime = null;
 
     constructor(props) {
         super(props);
@@ -41,7 +43,7 @@ class Exercise extends React.Component {
         };
         this.subscription = this.resultDebounce.subscribe(x => {
             if (x.action === winSize) {
-                this.setState({windowSize: this.props.windowSize})
+                this.setState({ windowSize: this.props.windowSize })
             }
         })
     }
@@ -51,6 +53,11 @@ class Exercise extends React.Component {
         audioGuide.setEnabled(getAudioEnabled());
         // Start ambient background music
         audioGuide.startAmbient();
+        // Track exercise start and record start time
+        if (this.props.difficulty) {
+            trackExerciseStart(this.props.difficulty);
+            this.exerciseStartTime = Date.now();
+        }
         this.playNext();
     }
 
@@ -91,6 +98,11 @@ class Exercise extends React.Component {
             }
         } else if (currentSet.type === ACTIVITY_TYPE_FINISH) {
             audioGuide.speakCompletion();
+            // Track exercise completion
+            if (this.props.difficulty && this.exerciseStartTime) {
+                const durationSeconds = Math.round((Date.now() - this.exerciseStartTime) / 1000);
+                trackExerciseComplete(this.props.difficulty, durationSeconds);
+            }
         }
 
         this.setState({
@@ -103,7 +115,7 @@ class Exercise extends React.Component {
     }
 
     startExercise(exercise, lastPosition) {
-        console.log('exercise, lastPosition', {exercise: exercise, lastPosition: lastPosition});
+        console.log('exercise, lastPosition', { exercise: exercise, lastPosition: lastPosition });
         unsubscribeIfCan(this.exerciseSubscription);
         this.currentExerciseSet = exercise;
         this.setState({
@@ -111,24 +123,24 @@ class Exercise extends React.Component {
             currentExercise: lastPosition
         });
         this.exerciseSubscription = startExercise(exercise, lastPosition).subscribe((x) => {
-                // Play direction tone for exercise movements
-                if (exercise.type === ACTIVITY_TYPE_EXERCISE) {
-                    audioGuide.playDirection(x.exercise);
+            // Play direction tone for exercise movements
+            if (exercise.type === ACTIVITY_TYPE_EXERCISE) {
+                audioGuide.playDirection(x.exercise);
+            }
+            // For delay countdowns, play beeps
+            else if (exercise.type === ACTIVITY_TYPE_DELAY && x.id !== this.lastSpokenDelay) {
+                // Play beep at 5, 3, 2, 1
+                if (x.id <= 5 && x.id > 0 && (x.id === 5 || x.id <= 3)) {
+                    audioGuide.playCountdownBeep(x.id);
+                    this.lastSpokenDelay = x.id;
                 }
-                // For delay countdowns, play beeps
-                else if (exercise.type === ACTIVITY_TYPE_DELAY && x.id !== this.lastSpokenDelay) {
-                    // Play beep at 5, 3, 2, 1
-                    if (x.id <= 5 && x.id > 0 && (x.id === 5 || x.id <= 3)) {
-                        audioGuide.playCountdownBeep(x.id);
-                        this.lastSpokenDelay = x.id;
-                    }
-                }
+            }
 
-                this.setState({
-                    eyeAction: x.exercise,
-                    currentExercise: x
-                });
-            },
+            this.setState({
+                eyeAction: x.exercise,
+                currentExercise: x
+            });
+        },
             (e) => console.error('Error on exercise: ', e),
             () => {
                 setTimeout(() => {
@@ -139,7 +151,7 @@ class Exercise extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (JSON.stringify(prevState) !== JSON.stringify(this.props)) {
-            this.stateSub.next({action: winSize, data: {windowSize: this.props.windowSize}})
+            this.stateSub.next({ action: winSize, data: { windowSize: this.props.windowSize } })
         }
     }
 
@@ -149,6 +161,15 @@ class Exercise extends React.Component {
         // Stop audio when leaving
         audioGuide.cancel();
         audioGuide.stopAmbient();
+        // Track abandonment if exercise wasn't completed
+        if (this.state.currentExerciseSet?.type !== ACTIVITY_TYPE_FINISH && this.props.difficulty) {
+            const progressPercent = Math.round((this.currentSetId / this.state.exercises.length) * 100);
+            trackExerciseAbandon(
+                this.props.difficulty,
+                this.state.currentExerciseSet?.name || 'unknown',
+                progressPercent
+            );
+        }
     }
 
     onPlayButtonChange = (playButtonState) => {
@@ -162,12 +183,20 @@ class Exercise extends React.Component {
         } else {
             this.play = !this.play;
         }
-        this.setState({play: this.play});
+        this.setState({ play: this.play });
         if (!this.play) {
             unsubscribeIfCan(this.exerciseSubscription);
             // Cancel speech when paused
             audioGuide.cancel();
+            // Track pause
+            if (this.props.difficulty) {
+                trackExercisePause(this.props.difficulty, this.state.currentExerciseSet?.name || 'unknown');
+            }
         } else {
+            // Track resume
+            if (this.props.difficulty) {
+                trackExerciseResume(this.props.difficulty);
+            }
             let lastPosition = this.state.currentExercise?.id === this.currentExerciseSet?.repeat ? undefined : this.state.currentExercise;
             this.startExercise(this.currentExerciseSet, lastPosition);
         }
@@ -188,31 +217,31 @@ class Exercise extends React.Component {
         return (
             <div className={"exerciseContainer"}>
                 {this.state.delayCount !== undefined &&
-                displayCount
+                    displayCount
                 }
 
                 {this.state.currentExerciseSet?.type === ACTIVITY_TYPE_DELAY &&
-                <div className={"displayCount"}>{this.state.currentExerciseSet?.name} {delay}</div>
+                    <div className={"displayCount"}>{this.state.currentExerciseSet?.name} {delay}</div>
                 }
 
                 {this.state.currentExerciseSet?.type === ACTIVITY_TYPE_FINISH &&
-                <div className={"displayCount"}>{this.state.currentExerciseSet?.name}</div>
+                    <div className={"displayCount"}>{this.state.currentExerciseSet?.name}</div>
                 }
 
                 {this.state.currentExerciseSet &&
-                this.state.currentExerciseSet?.type === ACTIVITY_TYPE_EXERCISE &&
-                <div className={"statusHolder"}>
-                    <div className={"currentStep"}>{this.state.currentExerciseSet?.name}</div>
-                    <div className={"currentStep"}>{status}</div>
-                </div>
+                    this.state.currentExerciseSet?.type === ACTIVITY_TYPE_EXERCISE &&
+                    <div className={"statusHolder"}>
+                        <div className={"currentStep"}>{this.state.currentExerciseSet?.name}</div>
+                        <div className={"currentStep"}>{status}</div>
+                    </div>
                 }
                 {next}
 
-                <Eyes eyeAction={this.state.eyeAction} size={this.state.windowSize}/>
-                <PauseButton onStateChage={this.onPlayButtonChange} play={this.state.play}/>
+                <Eyes eyeAction={this.state.eyeAction} size={this.state.windowSize} />
+                <PauseButton onStateChage={this.onPlayButtonChange} play={this.state.play} />
                 <KeyboardEventHandler
                     handleKeys={['space']}
-                    onKeyEvent={this.keyPressed}/>
+                    onKeyEvent={this.keyPressed} />
             </div>
         )
     };

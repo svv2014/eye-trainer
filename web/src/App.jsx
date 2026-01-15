@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import { getTheme, setTheme, applyTheme, getAudioEnabled, setAudioEnabled } from "./tools/localStorage";
 import iconImg from './icon.png';
+import { exerciseDurations, exerciseCounts } from './config/exerciseConfig';
+import { trackThemeChange, trackAudioToggle, trackLanguageChange } from './tools/analytics';
 
 class App extends React.Component {
     constructor(props) {
@@ -35,18 +37,21 @@ class App extends React.Component {
         this.setState({
             language: lang
         });
+        trackLanguageChange(lang);
     }
 
     toggleTheme() {
         const newTheme = this.state.theme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
         this.setState({ theme: newTheme });
+        trackThemeChange(newTheme);
     }
 
     toggleAudio() {
         const newAudioState = !this.state.audioEnabled;
         setAudioEnabled(newAudioState);
         this.setState({ audioEnabled: newAudioState });
+        trackAudioToggle(newAudioState);
     }
 
     render() {
@@ -118,8 +123,8 @@ class App extends React.Component {
                         <h3 className="card-title">{strings.easy}</h3>
                         <p className="card-benefit">{strings.easyBenefit}</p>
                         <div className="card-meta">
-                            <span className="duration">⏱ ~5 min</span>
-                            <span className="exercises">4 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 4).replace('4 ', '') : 'exercises'}</span>
+                            <span className="duration">⏱ ~{exerciseDurations.beginner} min</span>
+                            <span className="exercises">{exerciseCounts.beginner} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.beginner).replace(`${exerciseCounts.beginner} `, '') : 'exercises'}</span>
                         </div>
                         <div className="difficulty-bar">
                             <span className="filled"></span>
@@ -135,8 +140,8 @@ class App extends React.Component {
                         <h3 className="card-title">{strings.medium}</h3>
                         <p className="card-benefit">{strings.mediumBenefit}</p>
                         <div className="card-meta">
-                            <span className="duration">⏱ ~8 min</span>
-                            <span className="exercises">6 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 6).replace('6 ', '') : 'exercises'}</span>
+                            <span className="duration">⏱ ~{exerciseDurations.intermediate} min</span>
+                            <span className="exercises">{exerciseCounts.intermediate} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.intermediate).replace(`${exerciseCounts.intermediate} `, '') : 'exercises'}</span>
                         </div>
                         <div className="difficulty-bar">
                             <span className="filled"></span>
@@ -152,8 +157,8 @@ class App extends React.Component {
                         <h3 className="card-title">{strings.tough}</h3>
                         <p className="card-benefit">{strings.toughBenefit}</p>
                         <div className="card-meta">
-                            <span className="duration">⏱ ~12 min</span>
-                            <span className="exercises">6 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 6).replace('6 ', '') : 'exercises'}</span>
+                            <span className="duration">⏱ ~{exerciseDurations.advanced} min</span>
+                            <span className="exercises">{exerciseCounts.advanced} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.advanced).replace(`${exerciseCounts.advanced} `, '') : 'exercises'}</span>
                         </div>
                         <div className="difficulty-bar">
                             <span className="filled"></span>
@@ -170,8 +175,8 @@ class App extends React.Component {
                         <h3 className="card-title">{strings.tough} x2</h3>
                         <p className="card-benefit">{strings.tough2Benefit}</p>
                         <div className="card-meta">
-                            <span className="duration">⏱ ~20 min</span>
-                            <span className="exercises">6 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 6).replace('6 ', '') : 'exercises'}</span>
+                            <span className="duration">⏱ ~{exerciseDurations.advanced2} min</span>
+                            <span className="exercises">{exerciseCounts.advanced2} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.advanced2).replace(`${exerciseCounts.advanced2} `, '') : 'exercises'}</span>
                         </div>
                         <div className="difficulty-bar">
                             <span className="filled"></span>
