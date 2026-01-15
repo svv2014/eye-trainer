@@ -51,8 +51,6 @@ class Exercise extends React.Component {
     componentDidMount() {
         // Sync audio enabled state
         audioGuide.setEnabled(getAudioEnabled());
-        // Start ambient background music
-        audioGuide.startAmbient();
         // Track exercise start and record start time
         if (this.props.difficulty) {
             trackExerciseStart(this.props.difficulty);
@@ -158,9 +156,7 @@ class Exercise extends React.Component {
     componentWillUnmount() {
         unsubscribeIfCan(this.subscription);
         unsubscribeIfCan(this.exerciseSubscription);
-        // Stop audio when leaving
-        audioGuide.cancel();
-        audioGuide.stopAmbient();
+        // Stop audio when leaving\n        audioGuide.cancel();
         // Track abandonment if exercise wasn't completed
         if (this.state.currentExerciseSet?.type !== ACTIVITY_TYPE_FINISH && this.props.difficulty) {
             const progressPercent = Math.round((this.currentSetId / this.state.exercises.length) * 100);

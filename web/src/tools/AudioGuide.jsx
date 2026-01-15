@@ -42,7 +42,7 @@ class AudioGuide {
         this.enabled = getAudioEnabled();
         this.lastAction = null;
         this.ambientGain = null;
-        this.ambientOscillators = [];
+        this.ambientSource = null;
         this.isAmbientPlaying = false;
     }
 
@@ -194,42 +194,56 @@ class AudioGuide {
         });
     }
 
-    // Start ambient background music (gentle drone)
+    // Start ambient background sound (gentle brown noise - sounds like soft rain/wind)
     startAmbient() {
         if (!this.enabled || this.isAmbientPlaying) return;
 
         this.initAudioContext();
         this.isAmbientPlaying = true;
 
-        // Create a gentle ambient drone with multiple oscillators
+        // Create brown noise using a buffer (sounds like soft rain/distant waterfall)
+        const bufferSize = 2 * this.audioContext.sampleRate; // 2 seconds of audio
+        const noiseBuffer = this.audioContext.createBuffer(2, bufferSize, this.audioContext.sampleRate);
+
+        // Generate brown noise for each channel
+        for (let channel = 0; channel < 2; channel++) {
+            const output = noiseBuffer.getChannelData(channel);
+            let lastOut = 0.0;
+            for (let i = 0; i < bufferSize; i++) {
+                const white = Math.random() * 2 - 1;
+                // Brown noise: integrate white noise (low-pass filter effect)
+                output[i] = (lastOut + (0.02 * white)) / 1.02;
+                lastOut = output[i];
+                // Normalize to prevent clipping
+                output[i] *= 3.5;
+            }
+        }
+
+        // Create buffer source for looping
+        this.ambientSource = this.audioContext.createBufferSource();
+        this.ambientSource.buffer = noiseBuffer;
+        this.ambientSource.loop = true;
+
+        // Create gain node for volume control and fade in/out
         this.ambientGain = this.audioContext.createGain();
         this.ambientGain.gain.setValueAtTime(0, this.audioContext.currentTime);
-        this.ambientGain.gain.linearRampToValueAtTime(0.08, this.audioContext.currentTime + 2);
+        this.ambientGain.gain.linearRampToValueAtTime(0.06, this.audioContext.currentTime + 2); // Very gentle volume
+
+        // Optional: Add a low-pass filter to make it even softer
+        const filter = this.audioContext.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(800, this.audioContext.currentTime); // Cut high frequencies
+
+        // Connect nodes
+        this.ambientSource.connect(filter);
+        filter.connect(this.ambientGain);
         this.ambientGain.connect(this.audioContext.destination);
 
-        // Base frequencies for ambient sound (C major with slight detuning for warmth)
-        const ambientFreqs = [65.41, 98, 130.81, 196]; // C2, G2, C3, G3
-
-        ambientFreqs.forEach((freq, index) => {
-            const osc = this.audioContext.createOscillator();
-            const oscGain = this.audioContext.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, this.audioContext.currentTime);
-            // Add slight pitch variation for organic feel
-            osc.frequency.setValueAtTime(freq * (1 + (Math.random() - 0.5) * 0.01), this.audioContext.currentTime);
-
-            oscGain.gain.setValueAtTime(0.3 - index * 0.05, this.audioContext.currentTime);
-
-            osc.connect(oscGain);
-            oscGain.connect(this.ambientGain);
-            osc.start();
-
-            this.ambientOscillators.push({ osc, gain: oscGain });
-        });
+        // Start playback
+        this.ambientSource.start();
     }
 
-    // Stop ambient background music
+    // Stop ambient background sound
     stopAmbient() {
         if (!this.isAmbientPlaying) return;
 
@@ -237,12 +251,12 @@ class AudioGuide {
             const now = this.audioContext.currentTime;
             this.ambientGain.gain.linearRampToValueAtTime(0, now + 1);
 
-            // Stop oscillators after fade out
+            // Stop source after fade out
             setTimeout(() => {
-                this.ambientOscillators.forEach(({ osc }) => {
-                    try { osc.stop(); } catch (e) { }
-                });
-                this.ambientOscillators = [];
+                if (this.ambientSource) {
+                    try { this.ambientSource.stop(); } catch (e) { }
+                    this.ambientSource = null;
+                }
                 this.ambientGain = null;
             }, 1500);
         }
