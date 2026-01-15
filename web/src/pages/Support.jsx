@@ -24,18 +24,17 @@ class Support extends React.Component {
     }
 
     render() {
-        render() {
-            return (<div className="SupportPage">
-                <h1 className={"pageTitle"}>{strings.support}</h1>
+        return (<div className="SupportPage">
+            <h1 className={"pageTitle"}>{strings.support}</h1>
 
-                <h2>{strings.motto}</h2>
-                <p className={"textGray"}>{strings.missionStatement}</p>
+            <h2>{strings.motto}</h2>
+            <p className={"textGray"}>{strings.missionStatement}</p>
 
-                <div className="support-email-box">
-                    <h2>{strings.supportEmail}</h2>
-                </div>
-            </div>)
-        }
+            <div className="support-email-box">
+                <h2>{strings.supportEmail}</h2>
+            </div>
+        </div>)
     }
+}
 
 export default Support;
