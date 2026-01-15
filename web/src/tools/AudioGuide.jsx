@@ -16,8 +16,11 @@ import {
 // Language code mapping for Web Speech API
 const languageMap = {
     'en': 'en-US',
+    'es': 'es-ES',
     'fr': 'fr-FR',
-    'ru': 'ru-RU'
+    'de': 'de-DE',
+    'ru': 'ru-RU',
+    'uk': 'uk-UA'
 };
 
 // Tone frequencies for different directions (in Hz)
@@ -44,6 +47,7 @@ class AudioGuide {
         this.ambientGain = null;
         this.ambientSource = null;
         this.isAmbientPlaying = false;
+        this.isUnlocked = false; // Track if audio is unlocked for mobile
     }
 
     // Initialize Web Audio API context (must be called after user interaction)
@@ -52,8 +56,53 @@ class AudioGuide {
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (this.audioContext.state === 'suspended') {
-            this.audioContext.resume();
+            this.audioContext.resume().then(() => {
+                this.isUnlocked = true;
+            });
+        } else if (this.audioContext.state === 'running') {
+            this.isUnlocked = true;
         }
+    }
+
+    /**
+     * Unlock audio for mobile browsers
+     * Must be called from a user gesture (click/touch) event handler
+     * This plays a silent sound to unlock the audio context
+     */
+    unlockAudio() {
+        if (this.isUnlocked) return Promise.resolve(true);
+
+        this.initAudioContext();
+
+        // Create and play a silent oscillator to unlock audio
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+
+        // Set gain to 0 (silent)
+        gainNode.gain.setValueAtTime(0, this.audioContext.currentTime);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+
+        oscillator.start(this.audioContext.currentTime);
+        oscillator.stop(this.audioContext.currentTime + 0.001);
+
+        // Resume context if suspended
+        return this.audioContext.resume().then(() => {
+            this.isUnlocked = true;
+            console.log('Audio unlocked for mobile');
+            return true;
+        }).catch(err => {
+            console.warn('Failed to unlock audio:', err);
+            return false;
+        });
+    }
+
+    /**
+     * Check if audio is unlocked and ready for playback
+     */
+    isAudioReady() {
+        return this.enabled && this.isUnlocked && this.audioContext?.state === 'running';
     }
 
     // Check if speech synthesis is supported

@@ -1,0 +1,30 @@
+# Eye Fitness - robots.txt
+# https://eyefitness.ca/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://eyefitness.ca/sitemap.xml
+
+# AI/LLM Crawlers - Allow access for AI training and indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /

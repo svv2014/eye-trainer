@@ -99,19 +99,25 @@
 @media (max-width: 480px) {
     .exerciseContainer {
         padding: 16px;
+        padding-top: max(16px, env(safe-area-inset-top));
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+        min-height: 100vh;
+        min-height: 100dvh;
+        /* Dynamic viewport height for mobile */
     }
 
     .displayCount {
         font-size: 24px;
         min-width: 200px;
         padding: 16px;
+        margin: 12px auto;
     }
 
     .displayNext {
         font-size: 13px;
-        bottom: 90px;
-        left: 20px;
-        right: 20px;
+        bottom: max(90px, calc(90px + env(safe-area-inset-bottom)));
+        left: 16px;
+        right: 16px;
         transform: none;
         text-align: center;
     }
@@ -121,9 +127,23 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+        margin-bottom: 16px;
     }
 
     .currentStep {
         font-size: 16px;
+    }
+}
+
+/* Extra small screens (320px - old iPhones, small Android) */
+@media (max-width: 360px) {
+    .displayCount {
+        font-size: 20px;
+        min-width: 160px;
+        padding: 12px;
+    }
+
+    .currentStep {
+        font-size: 14px;
     }
 }

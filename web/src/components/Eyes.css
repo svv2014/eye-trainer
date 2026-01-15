@@ -10,7 +10,7 @@
   width: 300px;
   height: 300px;
   position: relative;
-  transform: translate(0,-10%);
+  transform: translate(0, -10%);
 }
 
 .eyeRight {
@@ -24,12 +24,13 @@
   left: 0px;
   top: 0px;
 }
+
 .eye {
   margin: 20%;
   width: 25%;
   height: 25%;
   border: solid 1px var(--eye-border);
-  border-radius:  75% 15%;
+  border-radius: 75% 15%;
   transform: rotate(45deg);
   background-color: var(--eye-bg);
   transition: background-color 0.3s, border-color 0.3s;
@@ -50,8 +51,8 @@
 }
 
 .moveLeft:before {
-   left: 0%;
-   top: 68%;
+  left: 0%;
+  top: 68%;
 }
 
 .moveRight:before {
@@ -91,4 +92,24 @@
 
 .relax {
   border-radius: 300% 36%;
+}
+
+/* Responsive Eyes for Mobile */
+@media (max-width: 768px) {
+  .eyeHolder {
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .eyeHolder {
+    max-width: 85vw;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .eye {
+    transition: all 0.15s ease;
+    /* Slightly faster on mobile for responsiveness */
+  }
 }

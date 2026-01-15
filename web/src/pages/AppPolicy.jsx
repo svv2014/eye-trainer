@@ -1,8 +1,8 @@
 import React from 'react';
 import '../css/common.css';
 import './AppPolicy.css';
-import {strings} from "../languages/localizationStrings";
-import {Cookies} from 'react-cookie';
+import { strings } from "../languages/localizationStrings";
+import { Cookies } from 'react-cookie';
 
 class AppPolicy extends React.Component {
     constructor(props) {
@@ -17,14 +17,14 @@ class AppPolicy extends React.Component {
 
     changeLanguage(lang) {
         strings.setLanguage(lang);
-        this.cookies.set('lang', lang, {path: '/'});
+        this.cookies.set('lang', lang, { path: '/' });
         this.setState({
             language: lang
         });
     }
 
     render() {
-        return (<div className="App">
+        return (<div className="AppPolicy">
             <h1 className={"pageTitle"}>{strings.privacyPolicy}</h1>
             <h2 className={"pageTitle"}>{strings.privacyPolicyPersonal}</h2>
             <h3 className={"textGray"}>{strings.privacyPolicyPersonalText}</h3>

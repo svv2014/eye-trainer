@@ -1,23 +1,62 @@
-.App {
-  width: 100%;
-  height: 100%;
-}
-
-.start-button{
-  color: white;
-  display: block;
-  background-color: black;
-  position: relative;
-  font-family: sans-serif;
-  font-size: 33px;
-  cursor: pointer;
-  border-left: 2px;
-  border-color: white;
-  margin: auto;
-  padding-top: 10px;
+.SupportPage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.start-button:hover {
-  color: gray;
+.SupportPage .pageTitle {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.SupportPage h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.SupportPage p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4b5563;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.support-email-box {
+  background-color: #f3f4f6;
+  padding: 24px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.support-email-box h2 {
+  margin: 0;
+  color: #2563eb;
+  font-size: 20px;
+}
+
+@media (max-width: 480px) {
+  .SupportPage {
+    padding: 24px 16px;
+  }
+
+  .SupportPage .pageTitle {
+    font-size: 28px;
+  }
+
+  .SupportPage p {
+    font-size: 16px;
+  }
 }

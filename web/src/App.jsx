@@ -7,6 +7,7 @@ import { Cookies } from 'react-cookie';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import { getTheme, setTheme, applyTheme, getAudioEnabled, setAudioEnabled } from "./tools/localStorage";
+import audioGuide from "./tools/AudioGuide";
 import iconImg from './icon.png';
 import { exerciseDurations, exerciseCounts } from './config/exerciseConfig';
 import { trackThemeChange, trackAudioToggle, trackLanguageChange } from './tools/analytics';
@@ -29,6 +30,7 @@ class App extends React.Component {
         this.changeLanguage = this.changeLanguage.bind(this);
         this.toggleTheme = this.toggleTheme.bind(this);
         this.toggleAudio = this.toggleAudio.bind(this);
+        this.handleExerciseClick = this.handleExerciseClick.bind(this);
     }
 
     changeLanguage(lang) {
@@ -52,6 +54,19 @@ class App extends React.Component {
         setAudioEnabled(newAudioState);
         this.setState({ audioEnabled: newAudioState });
         trackAudioToggle(newAudioState);
+        // Unlock audio on user interaction
+        if (newAudioState) {
+            audioGuide.unlockAudio();
+        }
+    }
+
+    // Handle click on exercise cards to unlock audio before navigation
+    handleExerciseClick(e) {
+        // Unlock audio on this user gesture before navigation
+        if (this.state.audioEnabled) {
+            audioGuide.unlockAudio();
+        }
+        // Allow default navigation to continue
     }
 
     render() {
@@ -105,7 +120,7 @@ class App extends React.Component {
                     </span>
                 </div>
 
-                <a href="exerciseBeginner" className="hero-cta">
+                <a href="exerciseBeginner" className="hero-cta" onClick={this.handleExerciseClick}>
                     {strings.startTrainingCta} →
                 </a>
             </div>
@@ -117,7 +132,7 @@ class App extends React.Component {
                 </div>
 
                 <div className="exercise-grid">
-                    <a href="exerciseBeginner" className="exercise-card">
+                    <a href="exerciseBeginner" className="exercise-card" onClick={this.handleExerciseClick}>
                         <div className="card-level">Level 1</div>
                         <div className="card-icon">&#127793;</div>
                         <h3 className="card-title">{strings.easy}</h3>
@@ -134,7 +149,7 @@ class App extends React.Component {
                         </div>
                     </a>
 
-                    <a href="exerciseIntermediate" className="exercise-card">
+                    <a href="exerciseIntermediate" className="exercise-card" onClick={this.handleExerciseClick}>
                         <div className="card-level">Level 2</div>
                         <div className="card-icon">&#128170;</div>
                         <h3 className="card-title">{strings.medium}</h3>
@@ -151,7 +166,7 @@ class App extends React.Component {
                         </div>
                     </a>
 
-                    <a href="exerciseAdvanced" className="exercise-card">
+                    <a href="exerciseAdvanced" className="exercise-card" onClick={this.handleExerciseClick}>
                         <div className="card-level">Level 3</div>
                         <div className="card-icon">&#128293;</div>
                         <h3 className="card-title">{strings.tough}</h3>
@@ -168,7 +183,7 @@ class App extends React.Component {
                         </div>
                     </a>
 
-                    <a href="exerciseAdvanced2" className="exercise-card card-featured">
+                    <a href="exerciseAdvanced2" className="exercise-card card-featured" onClick={this.handleExerciseClick}>
                         <div className="card-badge">INTENSIVE</div>
                         <div className="card-level">Level 4</div>
                         <div className="card-icon">&#9889;</div>

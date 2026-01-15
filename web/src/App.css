@@ -641,6 +641,23 @@
 }
 
 @media (max-width: 480px) {
+
+  /* Safe area padding for notched devices */
+  .App {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .top-nav {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+
+  .hero-section {
+    padding: 24px 16px 32px;
+  }
+
   .hero-title {
     font-size: 28px;
   }
@@ -654,21 +671,72 @@
     gap: 8px;
   }
 
+  .hero-cta {
+    width: 100%;
+    text-align: center;
+    padding: 16px 24px;
+    min-height: 52px;
+    /* Touch target */
+  }
+
+  .main-content {
+    padding: 24px 16px 32px;
+  }
+
   .section-title {
     font-size: 22px;
+  }
+
+  .exercise-card {
+    padding: 24px 20px;
+    min-height: 180px;
+    /* Consistent card height */
   }
 
   .card-title {
     font-size: 20px;
   }
 
+  .card-benefit {
+    font-size: 12px;
+    min-height: auto;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 20px;
+    min-height: 120px;
+  }
+
+  .self-test-button {
+    padding: 16px 20px;
+    min-height: 72px;
+    /* Touch target */
+  }
+
+  .footer {
+    padding-bottom: max(32px, env(safe-area-inset-bottom));
   }
 
   .footer-links {
     flex-direction: column;
     gap: 12px;
     align-items: center;
+  }
+
+  .footer-links a {
+    min-height: 44px;
+    /* Touch target */
+    display: flex;
+    align-items: center;
+  }
+
+  /* Nav buttons - ensure touch targets */
+  .nav-icon-btn {
+    min-width: 44px;
+    min-height: 44px;
   }
 }

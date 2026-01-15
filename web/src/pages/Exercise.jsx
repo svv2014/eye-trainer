@@ -17,6 +17,7 @@ import { strings } from "../languages/localizationStrings";
 import audioGuide from "../tools/AudioGuide";
 import { getAudioEnabled } from "../tools/localStorage";
 import { trackExerciseStart, trackExerciseComplete, trackExercisePause, trackExerciseResume, trackExerciseAbandon } from "../tools/analytics";
+import wakeLockManager from "../tools/WakeLock";
 
 
 const winSize = 'winSize';
@@ -49,8 +50,12 @@ class Exercise extends React.Component {
     }
 
     componentDidMount() {
+        // Unlock audio for mobile browsers (user gesture from navigation click)
+        audioGuide.unlockAudio();
         // Sync audio enabled state
         audioGuide.setEnabled(getAudioEnabled());
+        // Acquire wake lock to keep screen on during exercise
+        wakeLockManager.acquire();
         // Track exercise start and record start time
         if (this.props.difficulty) {
             trackExerciseStart(this.props.difficulty);
@@ -156,7 +161,10 @@ class Exercise extends React.Component {
     componentWillUnmount() {
         unsubscribeIfCan(this.subscription);
         unsubscribeIfCan(this.exerciseSubscription);
-        // Stop audio when leaving\n        audioGuide.cancel();
+        // Stop audio when leaving
+        audioGuide.cancel();
+        // Release wake lock
+        wakeLockManager.release();
         // Track abandonment if exercise wasn't completed
         if (this.state.currentExerciseSet?.type !== ACTIVITY_TYPE_FINISH && this.props.difficulty) {
             const progressPercent = Math.round((this.currentSetId / this.state.exercises.length) * 100);

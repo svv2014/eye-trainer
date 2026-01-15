@@ -3,10 +3,37 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#67C5D5">
-    <meta name="description" content="Eye exercises and training for better vision health">
-    <title>Eye Fitness</title>
+    <meta name="description"
+        content="Free eye exercises and training for better vision health. Reduce eye strain, improve focus, and maintain healthy eyes with guided workouts for all levels.">
+    <meta name="keywords"
+        content="eye exercises, eye training, vision health, eye strain relief, eye fitness, eye workout, screen fatigue, digital eye strain">
+    <meta name="author" content="Eye Fitness">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eyefitness.ca/">
+    <meta property="og:title" content="Eye Fitness - Free Eye Training Exercises">
+    <meta property="og:description"
+        content="Reduce eye strain and improve focus with free guided eye exercises. Perfect for screen users, all skill levels.">
+    <meta property="og:image" content="https://eyefitness.ca/og-image.png">
+    <meta property="og:site_name" content="Eye Fitness">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://eyefitness.ca/">
+    <meta name="twitter:title" content="Eye Fitness - Free Eye Training Exercises">
+    <meta name="twitter:description" content="Reduce eye strain and improve focus with free guided eye exercises.">
+    <meta name="twitter:image" content="https://eyefitness.ca/og-image.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://eyefitness.ca/">
+
+    <title>Eye Fitness - Free Eye Training & Vision Exercises</title>
     <!-- Google Analytics - only loads if GA_TRACKING_ID is set -->
     <% if (process.env.GA_TRACKING_ID) { %>
         <script async src="https://www.googletagmanager.com/gtag/js?id=<%= process.env.GA_TRACKING_ID %>"></script>
@@ -21,6 +48,32 @@
             <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
             <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
             <link rel="manifest" href="manifest.json">
+
+            <!-- Structured Data for Search Engines and LLMs -->
+            <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Eye Fitness",
+        "description": "Free eye exercises and training for better vision health. Reduce eye strain, improve focus, and maintain healthy eyes.",
+        "url": "https://eyefitness.ca/",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Guided eye exercises",
+            "Multiple difficulty levels",
+            "Audio guidance",
+            "Dark mode support",
+            "Multi-language support"
+        ],
+        "screenshot": "https://eyefitness.ca/og-image.png"
+    }
+    </script>
 </head>
 
 <body>

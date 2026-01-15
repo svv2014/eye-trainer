@@ -57,7 +57,9 @@ module.exports = (env, argv) => {
                     { from: path.resolve(__dirname, 'src', 'apple-touch-icon.png'), to: 'apple-touch-icon.png' },
                     { from: path.resolve(__dirname, 'src', 'android-chrome-192x192.png'), to: 'android-chrome-192x192.png' },
                     { from: path.resolve(__dirname, 'src', 'android-chrome-512x512.png'), to: 'android-chrome-512x512.png' },
-                    { from: path.resolve(__dirname, 'src', 'manifest.json'), to: 'manifest.json' }
+                    { from: path.resolve(__dirname, 'src', 'manifest.json'), to: 'manifest.json' },
+                    { from: path.resolve(__dirname, 'src', 'robots.txt'), to: 'robots.txt' },
+                    { from: path.resolve(__dirname, 'src', 'sitemap.xml'), to: 'sitemap.xml' }
                 ]
             })
         ],

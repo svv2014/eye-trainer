@@ -1,8 +1,8 @@
 import React from 'react';
 import '../css/common.css';
 import './Support.css';
-import {strings} from "../languages/localizationStrings";
-import {Cookies} from 'react-cookie';
+import { strings } from "../languages/localizationStrings";
+import { Cookies } from 'react-cookie';
 
 class Support extends React.Component {
     constructor(props) {
@@ -17,23 +17,25 @@ class Support extends React.Component {
 
     changeLanguage(lang) {
         strings.setLanguage(lang);
-        this.cookies.set('lang', lang, {path: '/'});
+        this.cookies.set('lang', lang, { path: '/' });
         this.setState({
             language: lang
         });
     }
 
     render() {
-        return (<div className="App">
-            <h1 className={"pageTitle"}>{strings.support}</h1>
-            <br/>
-            <h2>{strings.motto}</h2>
-            <p className={"textGray"}>{strings.missionStatement}</p>
-            <br/>
-            <br/>
-            <h2 className={"pageTitle"}>{strings.supportEmail}</h2>
-        </div>)
+        render() {
+            return (<div className="SupportPage">
+                <h1 className={"pageTitle"}>{strings.support}</h1>
+
+                <h2>{strings.motto}</h2>
+                <p className={"textGray"}>{strings.missionStatement}</p>
+
+                <div className="support-email-box">
+                    <h2>{strings.supportEmail}</h2>
+                </div>
+            </div>)
+        }
     }
-}
 
 export default Support;
