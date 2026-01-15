@@ -17,6 +17,8 @@
   position: absolute;
   right: 0px;
   top: 0px;
+  transform: scaleX(-1);
+  /* Mirror the eye for symmetry */
 }
 
 .eyeLeft {
@@ -98,6 +100,8 @@
 @media (max-width: 768px) {
   .eyeHolder {
     max-width: 90vw;
+    margin: 40px auto;
+    /* Pull eyes up closer to center/top */
   }
 }
 

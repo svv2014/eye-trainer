@@ -96,15 +96,16 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .exerciseContainer {
         padding: 16px;
-        padding-top: max(16px, env(safe-area-inset-top));
+        padding-top: max(100px, env(safe-area-inset-top));
+        /* Clear fixed back button */
         padding-bottom: max(16px, env(safe-area-inset-bottom));
         min-height: 100vh;
         min-height: 100dvh;
-        /* Dynamic viewport height for mobile */
     }
+
 
     .displayCount {
         font-size: 24px;
