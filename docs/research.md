@@ -28,6 +28,31 @@
 
 ---
 
+## Recently Implemented Features (January 2026)
+
+### ✅ Dark/Light Mode Theme
+- CSS custom properties for theming (`src/css/theme.css`)
+- Dark theme (default) with light mode option
+- Toggle via sun/moon icon in navigation bar
+- Respects system preference for first-time visitors
+- Smooth transitions between themes
+- Persisted in localStorage
+
+### ✅ Hybrid Audio Guidance System
+- **Voice announcements**: Exercise names, "Blink", "Get ready", completion messages
+- **Directional tones**: Stereo-panned synthesized tones for eye movements
+  - Left/Right: Same pitch, panned to respective speaker
+  - Up: Higher pitch, Down: Lower pitch
+  - Diagonals: Middle pitches with appropriate panning
+- **No "center" audio**: Reduces chatter, only directional cues
+- **Countdown beeps**: Rising pitch at 5, 3, 2, 1
+- **Ambient background**: Gentle drone during exercises
+- **Success sounds**: Pleasant major chord arpeggio on completion
+- Toggle via speaker icon in navigation bar
+- Uses Web Audio API (tones) + Web Speech API (voice)
+
+---
+
 ## Current State Analysis
 
 ### ✅ Strengths
@@ -86,6 +111,9 @@
 - Limited exercise instructions/education
 - No video demonstrations
 - No real-time form feedback
+- ~~No audio/voice guidance for exercises~~ ✅ **IMPLEMENTED** (Hybrid: voice announcements + directional tones)
+- No breathing integration with exercises
+- ~~No dark mode for eye comfort~~ ✅ **IMPLEMENTED** (Dark/Light theme toggle)
 
 ---
 
@@ -97,6 +125,7 @@ Based on analysis of leading vision training apps in 2026, here are the most pop
 
 **Industry Standard:**
 - **28+ Interactive Games**: Leading apps like AmblyoPlay offer diverse gamified exercises
+- **50+ Exercises**: VisionUp offers the largest database of high-quality eye exercises
 - **Adaptive Challenges**: Difficulty automatically adjusts to user progress
 - **Multiplayer Modes**: Social competition and collaborative exercises
 - **Points, Levels & Leaderboards**: Comprehensive achievement systems
@@ -140,6 +169,30 @@ Based on analysis of leading vision training apps in 2026, here are the most pop
 - **Detailed Reporting**: Export progress data for clinical use
 - **User Management**: Multi-user support for families/practices
 
+### 🔊 Audio & Voice Guidance (Growing Standard)
+
+**Industry Standard:**
+- **Voice Instructions**: Apps like Magnifier - Eye Care offer text and voice guidance for all exercises
+- **Customizable Audio**: Sound effects, notification tones, and voice coach options
+- **Haptic Feedback**: Vibration cues for exercise transitions (mobile apps)
+- **Silent/Audio Toggle**: User preference for guided vs. self-paced exercises
+
+**Evidence:**
+- Voice guidance is critical for eyes-closed relaxation exercises
+- Multi-sensory feedback improves exercise compliance and form
+
+### 🧘 Breathing Integration (Emerging Trend)
+
+**Industry Standard:**
+- **Synced Breathing**: VisionUp accompanies eye exercises with breathing "to create synergy"
+- **Relaxation Techniques**: Palming exercises combined with guided breathing
+- **Stress Reduction**: Eye exercises paired with calming breathwork for holistic wellness
+- **Customizable Patterns**: Inhale/exhale ratios adjustable to user preference
+
+**Evidence:**
+- Breathing synchronization reduces eye strain and promotes relaxation
+- Combined eye-breathing exercises show improved outcomes for digital eye strain
+
 ### ⏱️ Session Optimization
 
 **Industry Standard:**
@@ -147,6 +200,7 @@ Based on analysis of leading vision training apps in 2026, here are the most pop
 - **20-20-20 Rule Integration**: Automated reminders (every 20 min, look 20 feet away for 20 sec)
 - **Break Notifications**: Smart break scheduling based on usage patterns
 - **Blue Light Management**: Screen color temperature adjustment (e.g., Twilight app)
+- **Desktop/Browser Extensions**: Chrome extensions like eyeCare for work break reminders
 
 ### 📱 Computer Vision Syndrome (CVS) Features
 
@@ -164,12 +218,14 @@ Based on analysis of leading vision training apps in 2026, here are the most pop
 
 | Feature Category | Market Standard | Current State | Impact |
 |-----------------|-----------------|---------------|--------|
-| **Exercise Variety** | 28+ games | 6 exercise types | HIGH - Limited engagement |
+| **Exercise Variety** | 50+ exercises (VisionUp) | 6 exercise types | HIGH - Limited engagement |
 | **Adaptive Training** | AI-driven difficulty | 4 static levels | HIGH - No personalization |
-| **Session Duration** | 15-30 min programs | User-controlled | MEDIUM - No guidance |
-| **Vision Assessment** | Initial evaluation | Self-test chart only | HIGH - No customization |
 | **Break Reminders** | 20-20-20 rule | None | HIGH - Missing CVS prevention |
+| ~~**Audio/Voice Guidance**~~ | ~~Voice instructions for all exercises~~ | ~~Silent only~~ | ✅ **IMPLEMENTED** |
+| ~~**Dark Mode**~~ | ~~Eye-friendly themes standard~~ | ~~Not available~~ | ✅ **IMPLEMENTED** |
+| **Vision Assessment** | Initial evaluation | Self-test chart only | HIGH - No customization |
 | **Exercise Education** | Video demos, instructions | Minimal text | MEDIUM - Poor onboarding |
+| **Breathing Integration** | Synced with exercises | None | MEDIUM - Missed synergy |
 
 ### Opportunity Gaps (Medium Priority)
 
@@ -442,6 +498,8 @@ Research for this document was compiled from the following sources:
 - [AmblyoPlay - Best-rated Vision Therapy App](https://www.amblyoplay.com/)
 - [Eye Hero - Vision Training Backed By Science](https://www.eye-hero.com/)
 - [5 Free Vision Therapy Games - Cook Vision Therapy 2026 Guide](https://www.cookvisiontherapy.com/5-free-vision-therapy-games-for-kids-at-home-2025/)
+- [VisionUp - Eye Fitness App](https://visionup.me/)
+- [Magnifier - Eye Care & Trainer - App Store](https://apps.apple.com/us/app/magnifier-eye-care-trainer/id1604719029)
 
 ### Vision Therapy Best Practices & User Engagement
 - [How AmblyoPlay Works - Complete Guide](https://www.amblyoplay.com/how-amblyoplay-works/)
@@ -456,40 +514,74 @@ Research for this document was compiled from the following sources:
 - [Simple Eye Exercises to Relieve Computer Eye Strain](https://www.centreforsight.net/blog/simple-eye-exercises-to-relieve-computer-eye-strain-stress)
 - [Best Eye Exercises for Vision Support - DeCarlo Optometry](https://drdecarlo.net/best-eye-exercises-vision-support-digital-strain-relief/)
 
+### Break Reminders & Accessibility
+- [Eye Exercises: Vision Recovery - App Store](https://apps.apple.com/us/app/eye-exercises-vision-recovery/id991324367)
+- [Blink Eye - Break Reminder for Mac, Windows, Linux](https://blinkeye.vercel.app/en)
+- [eyeCare - Chrome Extension](https://chromewebstore.google.com/detail/eyecare-protect-your-visi/eeeningnfkaonkonalpcicgemnnijjhn)
+- [Remote Tools - Best Eye Strain Apps](https://www.remote.tools/category/eye-strain-apps)
+- [Calm Eyes: Eye Exercises - App Store](https://apps.apple.com/tr/app/calm-eyes-eye-exercises/id6741166535)
+- [Ophthalmology Breaking News - Top 10 Eye Health Apps](https://ophthalmologybreakingnews.com/top-10-eye-health-apps-and-tools-for-patients)
+
 ---
 
 ## Appendix: Competitive Analysis Summary
 
 ### Leading Apps Analyzed (2026)
 
-**AmblyoPlay (Market Leader)**
+**VisionUp (Exercise Leader)**
+- 50+ exercises - the largest database of high-quality eye exercises
+- Developed by professional ophthalmologists with 20+ years of experience
+- Breathing integration with eye exercises "to create synergy"
+- 5+ customizable training plans for dry eye, lazy eye, and other conditions
+- Meaningful results tracking and analytics
+- Calendar reminders for regular exercises
+- **Pricing:** Freemium with premium features
+
+**AmblyoPlay (Gamification Leader)**
 - Gamified exercises with 28+ therapeutic games
 - 30-minute daily sessions on tablet/computer
 - AI-driven difficulty adjustments
 - Multiplayer modes
 - Remote monitoring for professionals
 - **Pricing:** Subscription-based (~$10-15/month)
+- **Note:** Not currently available in the United States
 
 **Eye Hero**
 - Personalized vision assessment to start
 - 30-minute daily training exercises
 - Adaptive software with dichoptic method
+- Real-time analytics with measurable improvements in focus, tracking, and visual efficiency
 - Evidence-based approach
 - **Pricing:** Premium subscription
 
 **Optics Trainer**
-- Professional-grade platform
+- Professional-grade platform with 28+ engaging games
 - VR and eye-tracking integration (Meta Quest)
-- Comprehensive analytics
+- Comprehensive analytics with detailed performance metrics
 - User management system
 - Customizable programs
+- Tests multiple object tracking, visual memory, visual discrimination, peripheral vision, depth perception
 - **Pricing:** Premium tool for professionals
+
+**Eye Exercises: Vision Recovery (iOS)**
+- Voice-over instructions for exercises
+- Dark mode support
+- Daily & oculist reminders
+- Week & lifetime statistics
+- iCloud sync
+- Achievements system
+- **Pricing:** Freemium
 
 **Our Differentiator:**
 Eye Trainer remains **100% free, privacy-first, and accessible** while incorporating the most impactful features from premium competitors. Our Quebec-based mission emphasizes healthcare accessibility over monetization.
 
 ---
 
-**Document Version:** 1.0
+**Document Version:** 1.2
 **Last Updated:** January 14, 2026
+**Change Log:**
+- v1.2: Marked Audio/Voice Guidance and Dark Mode as IMPLEMENTED. Added "Recently Implemented Features" section with technical details.
+- v1.1: Added audio/voice guidance, breathing integration, and dark mode to gap analysis. Added VisionUp and Eye Exercises: Vision Recovery to competitive analysis. Expanded sources.
+- v1.0: Initial research document
+
 **Next Review:** Q2 2026 (Week 26)
