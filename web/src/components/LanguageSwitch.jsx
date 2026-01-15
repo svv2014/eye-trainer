@@ -8,8 +8,19 @@ class LanguageSwitch extends React.Component {
         super(props);
         this.state = {
             language: this.props.language,
-            languages: this.props.languages
+            languages: this.props.languages,
+            isOpen: false
         };
+        this.wrapperRef = React.createRef();
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -20,11 +31,22 @@ class LanguageSwitch extends React.Component {
         }
     }
 
+    handleClickOutside(event) {
+        if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
+            this.setState({ isOpen: false });
+        }
+    }
+
+    toggleDropdown = () => {
+        this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+    }
+
     changeButtonState = (lang, langName) => {
         if (this.props.onLanguageChange && lang !== this.state.language) {
             this.props.onLanguageChange(lang);
             this.announceLanguageChange(langName);
         }
+        this.setState({ isOpen: false });
     }
 
     announceLanguageChange = (langName) => {
@@ -40,22 +62,36 @@ class LanguageSwitch extends React.Component {
 
     render() {
         return (
-            <nav role="navigation" aria-label="Choose language">
-                <div className="langContainer" role="group">
-                    <span className="lang-icon" aria-hidden="true">🌐</span>
-                    {this.state.languages.map((lang) =>
-                        <button
-                            key={lang.locale}
-                            onClick={() => this.changeButtonState(lang.locale, lang.name)}
-                            className={"lang-button" + (lang.locale === this.state.language ? " active" : "")}
-                            aria-label={`Change language to ${lang.name}`}
-                            aria-current={lang.locale === this.state.language ? "true" : undefined}
-                            disabled={lang.locale === this.state.language}
-                            type="button"
-                        >
-                            {lang.name}
-                        </button>
-                    )}
+            <nav role="navigation" aria-label="Choose language" ref={this.wrapperRef}>
+                <div className={`langContainer ${this.state.isOpen ? 'open' : ''}`} role="group">
+                    {/* Mobile Trigger */}
+                    <button
+                        className="lang-trigger"
+                        onClick={this.toggleDropdown}
+                        aria-expanded={this.state.isOpen}
+                        aria-label="Select language"
+                    >
+                        <span className="lang-icon" aria-hidden="true">🌐</span>
+                        <span className="current-lang-code">{this.state.language.toUpperCase()}</span>
+                    </button>
+
+                    {/* Language List */}
+                    <div className="lang-list">
+                        <span className="lang-icon desktop-only" aria-hidden="true">🌐</span>
+                        {this.state.languages.map((lang) =>
+                            <button
+                                key={lang.locale}
+                                onClick={() => this.changeButtonState(lang.locale, lang.name)}
+                                className={"lang-button" + (lang.locale === this.state.language ? " active" : "")}
+                                aria-label={`Change language to ${lang.name}`}
+                                aria-current={lang.locale === this.state.language ? "true" : undefined}
+                                disabled={lang.locale === this.state.language}
+                                type="button"
+                            >
+                                {lang.name}
+                            </button>
+                        )}
+                    </div>
                 </div>
             </nav>
         )
