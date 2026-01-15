@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -41,6 +42,9 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
+            new webpack.DefinePlugin({
+                'process.env.GA_TRACKING_ID': JSON.stringify(process.env.GA_TRACKING_ID || '')
+            }),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, 'src', 'index.html')
             }),

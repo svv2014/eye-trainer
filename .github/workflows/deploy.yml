@@ -36,6 +36,8 @@ jobs:
       - name: Build project
         working-directory: ./web
         run: npm run build
+        env:
+          GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
 
       - name: Deploy to Firebase
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
