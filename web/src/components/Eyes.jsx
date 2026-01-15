@@ -1,7 +1,7 @@
-import {Subject} from "rxjs";
-import {debounceTime} from "rxjs/operators";
+import { Subject } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 import './Eyes.css';
-import {unsubscribeIfCan} from "../tools/rxTools";
+import { unsubscribeIfCan } from "../tools/rxTools";
 import {
     ACTION_DOWN, ACTION_DOWN_LEFT, ACTION_DOWN_RIGHT,
     ACTION_LEFT,
@@ -27,7 +27,7 @@ class Eyes extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {size: props.size, eyeAction: ''};
+        this.state = { size: props.size, eyeAction: '' };
         this.subscription = this.resultDebounce.subscribe(state => {
             if (state.action === STATE) {
                 this.setState(state.data)
@@ -40,7 +40,7 @@ class Eyes extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (JSON.stringify(prevState) !== JSON.stringify(this.props)) {
-            this.stateSub.next({action: STATE, data: this.props})
+            this.stateSub.next({ action: STATE, data: this.props })
         }
     }
 
@@ -50,7 +50,8 @@ class Eyes extends React.Component {
     }
 
     render() {
-        let eyeSize = this.state.size.width > this.state.size.height ? this.state.size.height -5 : this.state.size.width -5;
+        let padding = 20 * 2;
+        let eyeSize = this.state.size.width > this.state.size.height ? this.state.size.height - padding : this.state.size.width - padding;
         let classNameEyeMove = "";
         if (this.state.eyeAction && this.state.eyeAction === ACTION_LEFT) {
             classNameEyeMove += ' moveLeft'
@@ -73,10 +74,10 @@ class Eyes extends React.Component {
         }
 
         return (
-            <div className={"eyeHolder"} style={{width: eyeSize, height: eyeSize/2}}>
-                <div className="eyeContainer" style={{width: eyeSize, height: eyeSize}}>
-                    <div className={classNameEyeMove + " eye eyeLeft"}/>
-                    <div className={classNameEyeMove + " eye eyeRight"}/>
+            <div className={"eyeHolder"} style={{ width: eyeSize, height: eyeSize / 2 }}>
+                <div className="eyeContainer" style={{ width: eyeSize, height: eyeSize }}>
+                    <div className={classNameEyeMove + " eye eyeLeft"} />
+                    <div className={classNameEyeMove + " eye eyeRight"} />
                 </div>
             </div>)
     };
