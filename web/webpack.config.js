@@ -47,7 +47,13 @@ module.exports = (env, argv) => {
             new CopyPlugin({
                 patterns: [
                     { from: path.resolve(__dirname, 'res'), to: 'res' },
-                    { from: path.resolve(__dirname, 'src', 'icon.png'), to: 'icon.png' }
+                    { from: path.resolve(__dirname, 'src', 'icon.png'), to: 'icon.png' },
+                    { from: path.resolve(__dirname, 'src', 'favicon-16x16.png'), to: 'favicon-16x16.png' },
+                    { from: path.resolve(__dirname, 'src', 'favicon-32x32.png'), to: 'favicon-32x32.png' },
+                    { from: path.resolve(__dirname, 'src', 'apple-touch-icon.png'), to: 'apple-touch-icon.png' },
+                    { from: path.resolve(__dirname, 'src', 'android-chrome-192x192.png'), to: 'android-chrome-192x192.png' },
+                    { from: path.resolve(__dirname, 'src', 'android-chrome-512x512.png'), to: 'android-chrome-512x512.png' },
+                    { from: path.resolve(__dirname, 'src', 'manifest.json'), to: 'manifest.json' }
                 ]
             })
         ],

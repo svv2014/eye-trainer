@@ -1,12 +1,13 @@
 import React from 'react';
 import './css/common.css';
 import './App.css';
-import {languages, strings} from "./languages/localizationStrings";
+import { languages, strings } from "./languages/localizationStrings";
 import LanguageSwitch from "./components/LanguageSwitch";
-import {Cookies} from 'react-cookie';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSun, faMoon, faVolumeUp, faVolumeMute} from "@fortawesome/free-solid-svg-icons";
-import {getTheme, setTheme, applyTheme, getAudioEnabled, setAudioEnabled} from "./tools/localStorage";
+import { Cookies } from 'react-cookie';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
+import { getTheme, setTheme, applyTheme, getAudioEnabled, setAudioEnabled } from "./tools/localStorage";
+import iconImg from './icon.png';
 
 class App extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class App extends React.Component {
 
     changeLanguage(lang) {
         strings.setLanguage(lang);
-        this.cookies.set('lang', lang, {path: '/'});
+        this.cookies.set('lang', lang, { path: '/' });
         this.setState({
             language: lang
         });
@@ -51,7 +52,10 @@ class App extends React.Component {
     render() {
         return (<div className="App">
             <div className="top-nav">
-                <div className="nav-brand">{strings.appName}</div>
+                <div className="nav-brand">
+                    <img src={iconImg} alt="" className="nav-logo" />
+                    <span>{strings.appName}</span>
+                </div>
                 <div className="nav-controls">
                     <button
                         className={`nav-icon-btn ${this.state.audioEnabled ? 'active' : ''}`}
@@ -70,21 +74,35 @@ class App extends React.Component {
                         <FontAwesomeIcon icon={this.state.theme === 'dark' ? faSun : faMoon} />
                     </button>
                     <LanguageSwitch language={this.state.language} languages={languages}
-                                    onLanguageChange={(lang) => this.changeLanguage(lang)}/>
+                        onLanguageChange={(lang) => this.changeLanguage(lang)} />
                 </div>
             </div>
 
             <div className="hero-section">
+                <div className="hero-icon">
+                    <img src={iconImg} alt="Eye Fitness" />
+                </div>
                 <h1 className="hero-title">{strings.appName}</h1>
                 <p className="hero-subtitle">{strings.motto}</p>
-                <p className="hero-tagline">{strings.mottoTagline}</p>
-            </div>
 
-            <div className="disclaimer-section">
-                <div className="disclaimer-box">
-                    <span className="disclaimer-icon">&#9888;&#65039;</span>
-                    <p className="disclaimer-text">{strings.formatString(strings.disclaimer, strings.disclaimerTextPart1)}</p>
+                <div className="social-proof">
+                    <span className="proof-item">
+                        <span className="proof-icon">🌍</span>
+                        {strings.socialProofUsers}
+                    </span>
+                    <span className="proof-item">
+                        <span className="proof-icon">⭐</span>
+                        {strings.socialProofFree}
+                    </span>
+                    <span className="proof-item">
+                        <span className="proof-icon">🔒</span>
+                        {strings.socialProofPrivacy}
+                    </span>
                 </div>
+
+                <a href="exerciseBeginner" className="hero-cta">
+                    {strings.startTrainingCta} →
+                </a>
             </div>
 
             <div className="main-content">
@@ -95,32 +113,72 @@ class App extends React.Component {
 
                 <div className="exercise-grid">
                     <a href="exerciseBeginner" className="exercise-card">
+                        <div className="card-level">Level 1</div>
                         <div className="card-icon">&#127793;</div>
                         <h3 className="card-title">{strings.easy}</h3>
-                        <p className="card-description">5 repetitions per exercise</p>
-                        <div className="card-duration">~5 minutes</div>
+                        <p className="card-benefit">{strings.easyBenefit}</p>
+                        <div className="card-meta">
+                            <span className="duration">⏱ ~5 min</span>
+                            <span className="exercises">4 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 4).replace('4 ', '') : 'exercises'}</span>
+                        </div>
+                        <div className="difficulty-bar">
+                            <span className="filled"></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </a>
 
                     <a href="exerciseIntermediate" className="exercise-card">
+                        <div className="card-level">Level 2</div>
                         <div className="card-icon">&#128170;</div>
                         <h3 className="card-title">{strings.medium}</h3>
-                        <p className="card-description">10 repetitions per exercise</p>
-                        <div className="card-duration">~8 minutes</div>
+                        <p className="card-benefit">{strings.mediumBenefit}</p>
+                        <div className="card-meta">
+                            <span className="duration">⏱ ~8 min</span>
+                            <span className="exercises">6 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 6).replace('6 ', '') : 'exercises'}</span>
+                        </div>
+                        <div className="difficulty-bar">
+                            <span className="filled"></span>
+                            <span className="filled"></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </a>
 
                     <a href="exerciseAdvanced" className="exercise-card">
+                        <div className="card-level">Level 3</div>
                         <div className="card-icon">&#128293;</div>
                         <h3 className="card-title">{strings.tough}</h3>
-                        <p className="card-description">15 repetitions per exercise</p>
-                        <div className="card-duration">~12 minutes</div>
+                        <p className="card-benefit">{strings.toughBenefit}</p>
+                        <div className="card-meta">
+                            <span className="duration">⏱ ~12 min</span>
+                            <span className="exercises">6 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 6).replace('6 ', '') : 'exercises'}</span>
+                        </div>
+                        <div className="difficulty-bar">
+                            <span className="filled"></span>
+                            <span className="filled"></span>
+                            <span className="filled"></span>
+                            <span></span>
+                        </div>
                     </a>
 
                     <a href="exerciseAdvanced2" className="exercise-card card-featured">
                         <div className="card-badge">INTENSIVE</div>
+                        <div className="card-level">Level 4</div>
                         <div className="card-icon">&#9889;</div>
                         <h3 className="card-title">{strings.tough} x2</h3>
-                        <p className="card-description">30 repetitions per exercise</p>
-                        <div className="card-duration">~20 minutes</div>
+                        <p className="card-benefit">{strings.tough2Benefit}</p>
+                        <div className="card-meta">
+                            <span className="duration">⏱ ~20 min</span>
+                            <span className="exercises">6 {strings.exerciseCount ? strings.formatString(strings.exerciseCount, 6).replace('6 ', '') : 'exercises'}</span>
+                        </div>
+                        <div className="difficulty-bar">
+                            <span className="filled"></span>
+                            <span className="filled"></span>
+                            <span className="filled"></span>
+                            <span className="filled"></span>
+                        </div>
                     </a>
                 </div>
 
@@ -134,9 +192,57 @@ class App extends React.Component {
                     </div>
                     <span className="arrow-icon">&rarr;</span>
                 </a>
+
+                <div className="divider"></div>
+
+                {/* Features Section */}
+                <div className="features-section">
+                    <h2 className="features-title">{strings.featuresTitle}</h2>
+                    <div className="features-grid">
+                        <div className="feature-card">
+                            <span className="feature-icon">💰</span>
+                            <h4 className="feature-title">{strings.featureFreeTitle}</h4>
+                            <p className="feature-desc">{strings.featureFreeDesc}</p>
+                        </div>
+                        <div className="feature-card">
+                            <span className="feature-icon">🔒</span>
+                            <h4 className="feature-title">{strings.featurePrivacyTitle}</h4>
+                            <p className="feature-desc">{strings.featurePrivacyDesc}</p>
+                        </div>
+                        <div className="feature-card">
+                            <span className="feature-icon">🌐</span>
+                            <h4 className="feature-title">{strings.featureUniversalTitle}</h4>
+                            <p className="feature-desc">{strings.featureUniversalDesc}</p>
+                        </div>
+                        <div className="feature-card">
+                            <span className="feature-icon">🎯</span>
+                            <h4 className="feature-title">{strings.featureScienceTitle}</h4>
+                            <p className="feature-desc">{strings.featureScienceDesc}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            {/* Collapsible Disclaimer */}
+            <details className="disclaimer-collapsible">
+                <summary className="disclaimer-summary">
+                    <span className="disclaimer-icon">ℹ️</span>
+                    <span>{strings.healthInfoTitle}</span>
+                </summary>
+                <div className="disclaimer-content">
+                    <p>{strings.formatString(strings.disclaimer, strings.disclaimerTextPart1)}</p>
+                </div>
+            </details>
+
             <footer className="footer">
+                <div className="footer-brand">
+                    <img src={iconImg} alt="" className="footer-logo" />
+                    <span>{strings.appName}</span>
+                </div>
+                <div className="footer-links">
+                    <a href="/policy">{strings.privacyPolicy}</a>
+                    <a href="/support">{strings.support}</a>
+                </div>
                 <div className="footer-content">
                     <p className="footer-text">{strings.builtInQuebec}</p>
                     <p className="footer-subtext">{strings.peopleDriven}</p>

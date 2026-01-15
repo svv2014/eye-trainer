@@ -1,11 +1,11 @@
 import LocalizedStrings from 'react-localization';
 import { Cookies } from 'react-cookie';
 
-export const languages = [{ name: "English", locale: "en"},
-                         { name: "Español", locale: "es"},
-                         { name: "Français", locale: "fr"},
-                         { name: "Русский", locale: "ru"},
-                         { name: "Українська", locale: "uk"}];
+export const languages = [{ name: "English", locale: "en" },
+{ name: "Español", locale: "es" },
+{ name: "Français", locale: "fr" },
+{ name: "Русский", locale: "ru" },
+{ name: "Українська", locale: "uk" }];
 
 
 
@@ -94,6 +94,28 @@ const translations = new LocalizedStrings({
         lookDownLeft: "Look down left",
         lookDownRight: "Look down right",
         relaxEyes: "Relax",
+        // Homepage redesign
+        startTrainingCta: "Start 5-Minute Training",
+        socialProofUsers: "10,000+ users worldwide",
+        socialProofFree: "100% Free Forever",
+        socialProofPrivacy: "No Data Collection",
+        // Features section
+        featuresTitle: "Why Eye Fitness?",
+        featureFreeTitle: "100% Free",
+        featureFreeDesc: "No subscriptions, no premium features, no hidden costs.",
+        featurePrivacyTitle: "Privacy First",
+        featurePrivacyDesc: "We don't collect or store any personal data.",
+        featureUniversalTitle: "Works Everywhere",
+        featureUniversalDesc: "Use on any device with a web browser.",
+        featureScienceTitle: "Science-Based",
+        featureScienceDesc: "Exercises designed for effective eye muscle training.",
+        // Enhanced exercise descriptions
+        easyBenefit: "Perfect for beginners. Gentle movements to reduce strain.",
+        mediumBenefit: "Build endurance with moderate intensity exercises.",
+        toughBenefit: "Challenge yourself with advanced eye training.",
+        tough2Benefit: "Maximum intensity for experienced practitioners.",
+        exerciseCount: "{0} exercises",
+        healthInfoTitle: "Important Health Information",
     },
     es: {
         leftRight: "Izquierda <-> Derecha",
@@ -264,6 +286,28 @@ const translations = new LocalizedStrings({
         lookDownLeft: "Regardez en bas à gauche",
         lookDownRight: "Regardez en bas à droite",
         relaxEyes: "Détendez-vous",
+        // Homepage redesign
+        startTrainingCta: "Commencer 5 minutes d'entraînement",
+        socialProofUsers: "10 000+ utilisateurs dans le monde",
+        socialProofFree: "100% Gratuit pour toujours",
+        socialProofPrivacy: "Aucune collecte de données",
+        // Features section
+        featuresTitle: "Pourquoi Eye Fitness ?",
+        featureFreeTitle: "100% Gratuit",
+        featureFreeDesc: "Aucun abonnement, aucune fonctionnalité premium, aucun coût caché.",
+        featurePrivacyTitle: "Vie privée d'abord",
+        featurePrivacyDesc: "Nous ne collectons ni ne stockons aucune donnée personnelle.",
+        featureUniversalTitle: "Fonctionne partout",
+        featureUniversalDesc: "Utilisez sur n'importe quel appareil avec un navigateur web.",
+        featureScienceTitle: "Basé sur la science",
+        featureScienceDesc: "Exercices conçus pour un entraînement efficace des muscles oculaires.",
+        // Enhanced exercise descriptions
+        easyBenefit: "Parfait pour les débutants. Mouvements doux pour réduire la fatigue.",
+        mediumBenefit: "Développez l'endurance avec des exercices d'intensité modérée.",
+        toughBenefit: "Défiez-vous avec un entraînement oculaire avancé.",
+        tough2Benefit: "Intensité maximale pour praticiens expérimentés.",
+        exerciseCount: "{0} exercices",
+        healthInfoTitle: "Informations de santé importantes",
     },
     ru: {
         leftRight: "Лево <-> Право",
@@ -349,6 +393,28 @@ const translations = new LocalizedStrings({
         lookDownLeft: "Смотрите вниз влево",
         lookDownRight: "Смотрите вниз вправо",
         relaxEyes: "Расслабьтесь",
+        // Homepage redesign
+        startTrainingCta: "Начать 5-минутную тренировку",
+        socialProofUsers: "10 000+ пользователей по всему миру",
+        socialProofFree: "100% Бесплатно навсегда",
+        socialProofPrivacy: "Никакого сбора данных",
+        // Features section
+        featuresTitle: "Почему Фитнес для глаз?",
+        featureFreeTitle: "100% Бесплатно",
+        featureFreeDesc: "Без подписок, без премиум-функций, без скрытых платежей.",
+        featurePrivacyTitle: "Конфиденциальность прежде всего",
+        featurePrivacyDesc: "Мы не собираем и не храним личные данные.",
+        featureUniversalTitle: "Работает везде",
+        featureUniversalDesc: "Используйте на любом устройстве с веб-браузером.",
+        featureScienceTitle: "Научный подход",
+        featureScienceDesc: "Упражнения для эффективной тренировки глазных мышц.",
+        // Enhanced exercise descriptions
+        easyBenefit: "Идеально для начинающих. Мягкие движения для снятия напряжения.",
+        mediumBenefit: "Развивайте выносливость упражнениями средней интенсивности.",
+        toughBenefit: "Бросьте себе вызов продвинутой тренировкой глаз.",
+        tough2Benefit: "Максимальная интенсивность для опытных практиков.",
+        exerciseCount: "{0} упражнений",
+        healthInfoTitle: "Важная информация о здоровье",
     },
     uk: {
         leftRight: "Ліво <-> Право",
@@ -440,7 +506,7 @@ const translations = new LocalizedStrings({
 
 let lang = new Cookies().get("lang");
 if (lang !== undefined) {
-    for(let ll of languages) {
+    for (let ll of languages) {
         if (ll.locale === lang) {
             console.log("set lang: ", lang);
             translations.setLanguage(lang);
