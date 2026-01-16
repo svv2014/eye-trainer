@@ -1,22 +1,59 @@
 {
-    "name": "Eye Fitness",
+    "name": "Eye Fitness - Eye Training & Vision Exercises",
     "short_name": "Eye Fitness",
-    "description": "Eye exercises and training for better vision health",
+    "description": "Free eye exercises and training for better vision health. Reduce eye strain, improve focus with guided workouts.",
+    "categories": ["health", "fitness", "lifestyle"],
+    "lang": "en",
+    "dir": "ltr",
     "icons": [
+        {
+            "src": "favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
         {
             "src": "android-chrome-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
         },
         {
             "src": "android-chrome-512x512.png",
             "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
             "type": "image/png"
         }
     ],
     "theme_color": "#67C5D5",
     "background_color": "#1a1a2e",
     "display": "standalone",
+    "orientation": "any",
     "start_url": "/",
-    "scope": "/"
+    "scope": "/",
+    "prefer_related_applications": false,
+    "screenshots": [
+        {
+            "src": "og-image.png",
+            "sizes": "1200x630",
+            "type": "image/png",
+            "platform": "wide"
+        }
+    ]
 }

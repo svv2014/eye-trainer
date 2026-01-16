@@ -59,7 +59,8 @@ module.exports = (env, argv) => {
                     { from: path.resolve(__dirname, 'src', 'android-chrome-512x512.png'), to: 'android-chrome-512x512.png' },
                     { from: path.resolve(__dirname, 'src', 'manifest.json'), to: 'manifest.json' },
                     { from: path.resolve(__dirname, 'src', 'robots.txt'), to: 'robots.txt' },
-                    { from: path.resolve(__dirname, 'src', 'sitemap.xml'), to: 'sitemap.xml' }
+                    { from: path.resolve(__dirname, 'src', 'sitemap.xml'), to: 'sitemap.xml' },
+                    { from: path.resolve(__dirname, 'src', 'sw.js'), to: 'sw.js' }
                 ]
             })
         ],
