@@ -41,13 +41,18 @@ export const exerciseUpDown = (repeat) => {
 };
 
 export const exerciseDelay = (delay, message) => {
-    return {
+    const result = {
         type: ACTIVITY_TYPE_DELAY,
         name: message,
         delay: 1000,
         moves: [ACTION_CENTER],
         repeat: delay
+    };
+    // Add blink animation when this is a blink pause
+    if (message === strings.blink) {
+        result.visualHint = 'blink';
     }
+    return result;
 }
 
 
