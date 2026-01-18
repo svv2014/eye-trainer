@@ -13,7 +13,16 @@ import Exercise1 from "./pages/Exercise";
 import App from "./App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { beginner, intermediate, advanced, advanced2 } from "./config/exerciseConfig";
+import {
+    beginner,
+    intermediate,
+    advanced,
+    advanced2,
+    progressiveEasy,
+    progressiveMedium,
+    progressiveTough,
+    focusRelaxation
+} from "./config/exerciseConfig";
 import SelfTest from "./pages/SelfTest";
 import AppPolicy from "./pages/AppPolicy";
 import Support from "./pages/Support";
@@ -48,6 +57,22 @@ const LandingPage = () =>
                 <Route path="/exerciseAdvanced2">
                     <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
                     <Exercise1 activities={advanced2} difficulty="advanced2" />
+                </Route>
+                <Route path="/exerciseProgressiveEasy">
+                    <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
+                    <Exercise1 activities={progressiveEasy} difficulty="progressiveEasy" />
+                </Route>
+                <Route path="/exerciseProgressiveMedium">
+                    <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
+                    <Exercise1 activities={progressiveMedium} difficulty="progressiveMedium" />
+                </Route>
+                <Route path="/exerciseProgressiveTough">
+                    <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
+                    <Exercise1 activities={progressiveTough} difficulty="progressiveTough" />
+                </Route>
+                <Route path="/exerciseFocusRelaxation">
+                    <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
+                    <Exercise1 activities={focusRelaxation} difficulty="focusRelaxation" />
                 </Route>
                 <Route path="/policy">
                     <AppPolicy />

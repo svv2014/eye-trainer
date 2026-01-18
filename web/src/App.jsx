@@ -9,7 +9,7 @@ import { faSun, faMoon, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid
 import { getTheme, setTheme, applyTheme, getAudioEnabled, setAudioEnabled } from "./tools/localStorage";
 import audioGuide from "./tools/AudioGuide";
 import iconImg from './icon.png';
-import { exerciseDurations, exerciseCounts } from './config/exerciseConfig';
+import { exerciseDurations, exerciseCounts, exerciseGroups } from './config/exerciseConfig';
 import { trackThemeChange, trackAudioToggle, trackLanguageChange } from './tools/analytics';
 
 class App extends React.Component {
@@ -25,12 +25,14 @@ class App extends React.Component {
         this.state = {
             language: language,
             theme: currentTheme,
-            audioEnabled: audioEnabled
+            audioEnabled: audioEnabled,
+            openGroups: { basics: true, progressive: false, specialized: false }
         }
         this.changeLanguage = this.changeLanguage.bind(this);
         this.toggleTheme = this.toggleTheme.bind(this);
         this.toggleAudio = this.toggleAudio.bind(this);
         this.handleExerciseClick = this.handleExerciseClick.bind(this);
+        this.toggleGroup = this.toggleGroup.bind(this);
     }
 
     changeLanguage(lang) {
@@ -67,6 +69,40 @@ class App extends React.Component {
             audioGuide.unlockAudio();
         }
         // Allow default navigation to continue
+    }
+
+    // Toggle accordion group open/closed
+    toggleGroup(groupName) {
+        this.setState(prevState => ({
+            openGroups: {
+                ...prevState.openGroups,
+                [groupName]: !prevState.openGroups[groupName]
+            }
+        }));
+    }
+
+    // Render exercise card for a level
+    renderExerciseCard(level, index, groupName) {
+        const levelIcons = ['🌱', '💪', '🔥', '⚡', '🎯', '🧘', '👁️'];
+        const icon = levelIcons[index % levelIcons.length];
+        const duration = exerciseDurations[level.key];
+        const count = exerciseCounts[level.key];
+
+        return (
+            <a
+                href={`exercise${level.key.charAt(0).toUpperCase() + level.key.slice(1)}`}
+                className="exercise-card"
+                key={level.key}
+                onClick={this.handleExerciseClick}
+            >
+                <div className="card-icon">{icon}</div>
+                <h3 className="card-title">{level.name}</h3>
+                <div className="card-meta">
+                    <span className="duration">⏱ ~{duration} min</span>
+                    <span className="exercises">{count} exercises</span>
+                </div>
+            </a>
+        );
     }
 
     render() {
@@ -131,75 +167,41 @@ class App extends React.Component {
                     <p className="section-description">{strings.startExerciseDescription}</p>
                 </div>
 
-                <div className="exercise-grid">
-                    <a href="exerciseBeginner" className="exercise-card" onClick={this.handleExerciseClick}>
-                        <div className="card-level">Level 1</div>
-                        <div className="card-icon">&#127793;</div>
-                        <h3 className="card-title">{strings.easy}</h3>
-                        <p className="card-benefit">{strings.easyBenefit}</p>
-                        <div className="card-meta">
-                            <span className="duration">⏱ ~{exerciseDurations.beginner} min</span>
-                            <span className="exercises">{exerciseCounts.beginner} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.beginner).replace(`${exerciseCounts.beginner} `, '') : 'exercises'}</span>
-                        </div>
-                        <div className="difficulty-bar">
-                            <span className="filled"></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </a>
+                {/* Exercise Groups Accordion */}
+                <div className="exercise-groups">
+                    {Object.entries(exerciseGroups).map(([groupKey, group]) => {
+                        const isOpen = this.state.openGroups[groupKey];
+                        const totalLevels = group.levels.length;
 
-                    <a href="exerciseIntermediate" className="exercise-card" onClick={this.handleExerciseClick}>
-                        <div className="card-level">Level 2</div>
-                        <div className="card-icon">&#128170;</div>
-                        <h3 className="card-title">{strings.medium}</h3>
-                        <p className="card-benefit">{strings.mediumBenefit}</p>
-                        <div className="card-meta">
-                            <span className="duration">⏱ ~{exerciseDurations.intermediate} min</span>
-                            <span className="exercises">{exerciseCounts.intermediate} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.intermediate).replace(`${exerciseCounts.intermediate} `, '') : 'exercises'}</span>
-                        </div>
-                        <div className="difficulty-bar">
-                            <span className="filled"></span>
-                            <span className="filled"></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </a>
+                        return (
+                            <div key={groupKey} className={`exercise-group ${isOpen ? 'open' : 'closed'}`}>
+                                <button
+                                    className="group-header"
+                                    onClick={() => this.toggleGroup(groupKey)}
+                                    aria-expanded={isOpen}
+                                >
+                                    <div className="group-header-content">
+                                        <div className="group-title-row">
+                                            <h3 className="group-title">{group.displayName}</h3>
+                                            <span className="group-count">{totalLevels} {totalLevels === 1 ? 'level' : 'levels'}</span>
+                                        </div>
+                                        <p className="group-description">{group.description}</p>
+                                    </div>
+                                    <span className="group-chevron">{isOpen ? '▼' : '▶'}</span>
+                                </button>
 
-                    <a href="exerciseAdvanced" className="exercise-card" onClick={this.handleExerciseClick}>
-                        <div className="card-level">Level 3</div>
-                        <div className="card-icon">&#128293;</div>
-                        <h3 className="card-title">{strings.tough}</h3>
-                        <p className="card-benefit">{strings.toughBenefit}</p>
-                        <div className="card-meta">
-                            <span className="duration">⏱ ~{exerciseDurations.advanced} min</span>
-                            <span className="exercises">{exerciseCounts.advanced} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.advanced).replace(`${exerciseCounts.advanced} `, '') : 'exercises'}</span>
-                        </div>
-                        <div className="difficulty-bar">
-                            <span className="filled"></span>
-                            <span className="filled"></span>
-                            <span className="filled"></span>
-                            <span></span>
-                        </div>
-                    </a>
-
-                    <a href="exerciseAdvanced2" className="exercise-card card-featured" onClick={this.handleExerciseClick}>
-                        <div className="card-badge">INTENSIVE</div>
-                        <div className="card-level">Level 4</div>
-                        <div className="card-icon">&#9889;</div>
-                        <h3 className="card-title">{strings.tough} x2</h3>
-                        <p className="card-benefit">{strings.tough2Benefit}</p>
-                        <div className="card-meta">
-                            <span className="duration">⏱ ~{exerciseDurations.advanced2} min</span>
-                            <span className="exercises">{exerciseCounts.advanced2} {strings.exerciseCount ? strings.formatString(strings.exerciseCount, exerciseCounts.advanced2).replace(`${exerciseCounts.advanced2} `, '') : 'exercises'}</span>
-                        </div>
-                        <div className="difficulty-bar">
-                            <span className="filled"></span>
-                            <span className="filled"></span>
-                            <span className="filled"></span>
-                            <span className="filled"></span>
-                        </div>
-                    </a>
+                                {isOpen && (
+                                    <div className="group-content">
+                                        <div className="exercise-grid">
+                                            {group.levels.map((level, index) =>
+                                                this.renderExerciseCard(level, index, groupKey)
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
 
                 <div className="divider"></div>

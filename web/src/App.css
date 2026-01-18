@@ -741,4 +741,141 @@
     min-width: 44px;
     min-height: 44px;
   }
+
+  /* Accordion adjustments for mobile */
+  .group-header {
+    min-height: 68px;
+    padding: 16px;
+  }
+
+  .group-title {
+    font-size: 18px;
+  }
+
+  .group-count {
+    font-size: 12px;
+  }
+
+  .group-description {
+    font-size: 13px;
+  }
+
+  .group-chevron {
+    font-size: 18px;
+  }
+}
+
+/* Exercise Groups Accordion */
+.exercise-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.exercise-group {
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-card);
+  transition: all 0.3s ease;
+}
+
+.exercise-group:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 16px rgba(103, 197, 213, 0.15);
+}
+
+.exercise-group.open {
+  border-color: var(--accent-primary);
+}
+
+.group-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  gap: 16px;
+}
+
+.group-header:hover {
+  background: var(--bg-hover);
+}
+
+.group-header:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
+}
+
+.group-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.group-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.group-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.group-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.group-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.group-chevron {
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: transform 0.3s ease, color 0.2s ease;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.exercise-group.open .group-chevron {
+  color: var(--accent-primary);
+}
+
+.group-content {
+  padding: 0 24px 24px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
