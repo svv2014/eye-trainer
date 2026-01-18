@@ -210,13 +210,30 @@ class Exercise extends React.Component {
         this.changePlayState();
     }
 
+    skipToNextExercise = () => {
+        // Only skip if there's a next exercise
+        if (this.state.nextExerciseSet) {
+            unsubscribeIfCan(this.exerciseSubscription);
+            audioGuide.cancel();
+            this.playNext();
+        }
+    }
+
     render() {
 
         let count = this.state.currentExercise?.id === undefined ? 1 : this.state.currentExercise.id + 1;
         let delay = this.state.currentExercise?.id === undefined ? this.state.currentExerciseSet?.repeat : this.state.currentExercise.id;
         let status = '' + count + '/' + this.state.currentExerciseSet?.repeat;
         let displayCount = <div className={"displayCount"}>{this.state.delayCount}</div>;
-        let next = <div className={"displayNext"}>{strings.next + ": "} {this.state.nextExerciseSet?.name}</div>;
+        let next = this.state.nextExerciseSet ? (
+            <div
+                className={"displayNext"}
+                onClick={this.skipToNextExercise}
+                title={strings.skipToNext || "Skip to next exercise"}
+            >
+                {strings.next + ": "} {this.state.nextExerciseSet.name}
+            </div>
+        ) : null;
 
         return (
             <div className={"exerciseContainer"}>
