@@ -15,6 +15,18 @@ import {
     exerciseDistanceGaze,
     exerciseSlowCircleLeft,
     exerciseEyeRollComplete,
+    // Phase 2: Intermediate exercises
+    exerciseSquareClockwise,
+    exerciseSquareCounterClockwise,
+    exerciseTriangle,
+    exerciseStar,
+    exercisePencilPushUp,
+    exerciseBarrelCard,
+    exerciseDotFusion,
+    exerciseSlowCircleRight,
+    exerciseSpiralOutward,
+    exerciseSpiralInward,
+    exerciseWavePattern,
     calculateExerciseDuration,
     ACTIVITY_TYPE_EXERCISE
 } from "../tools/ExerciseUtils";
@@ -63,7 +75,7 @@ exerciseRoundRight(10)
 
 // ===== PROGRESSIVE LEVELS (NEW) - Enhanced with Phase 1 exercises =====
 
-// Progressive Easy: Basics + Figure-8 patterns
+// Progressive Easy: Basics + Figure-8 patterns + simple geometric patterns
 export const progressiveEasy = addFinish([
 exerciseDelay(5, strings.getReady),
 exerciseLeftRight(8),
@@ -74,10 +86,14 @@ exerciseFigure8Horizontal(5),
 exerciseDelay(5, strings.blink),
 exerciseFigure8Vertical(5),
 exerciseDelay(5, strings.blink),
+exerciseTriangle(5),
+exerciseDelay(5, strings.blink),
+exerciseSquareClockwise(5),
+exerciseDelay(5, strings.blink),
 exerciseSlowCircleLeft(3)
 ]);
 
-// Progressive Medium: More variety with tracking and circles
+// Progressive Medium: More variety with tracking, circles, and geometric patterns
 export const progressiveMedium = addFinish([
 exerciseDelay(5, strings.getReady),
 exerciseLeftRight(12),
@@ -92,14 +108,26 @@ exerciseFigure8Horizontal(8),
 exerciseDelay(5, strings.blink),
 exerciseFigure8Vertical(8),
 exerciseDelay(5, strings.blink),
+exerciseSquareClockwise(8),
+exerciseDelay(5, strings.blink),
+exerciseSquareCounterClockwise(8),
+exerciseDelay(5, strings.blink),
+exerciseTriangle(8),
+exerciseDelay(5, strings.blink),
+exerciseStar(6),
+exerciseDelay(5, strings.blink),
 exerciseRoundLeft(5),
 exerciseDelay(5, strings.blink),
 exerciseRoundRight(5),
 exerciseDelay(5, strings.blink),
-exerciseSlowCircleLeft(5)
+exerciseSlowCircleLeft(5),
+exerciseDelay(5, strings.blink),
+exerciseSlowCircleRight(5),
+exerciseDelay(5, strings.blink),
+exerciseWavePattern(8)
 ]);
 
-// Progressive Tough: Full workout with all Phase 1 exercises
+// Progressive Tough: Full workout with Phase 1 and Phase 2 exercises
 export const progressiveTough = addFinish([
 exerciseDelay(5, strings.getReady),
 exerciseLeftRight(15),
@@ -114,16 +142,32 @@ exerciseFigure8Horizontal(10),
 exerciseDelay(5, strings.blink),
 exerciseFigure8Vertical(10),
 exerciseDelay(5, strings.blink),
+exerciseSquareClockwise(10),
+exerciseDelay(5, strings.blink),
+exerciseSquareCounterClockwise(10),
+exerciseDelay(5, strings.blink),
+exerciseTriangle(10),
+exerciseDelay(5, strings.blink),
+exerciseStar(8),
+exerciseDelay(5, strings.blink),
+exerciseWavePattern(10),
+exerciseDelay(5, strings.blink),
+exerciseSpiralOutward(8),
+exerciseDelay(5, strings.blink),
+exerciseSpiralInward(8),
+exerciseDelay(5, strings.blink),
 exerciseRoundLeft(8),
 exerciseDelay(5, strings.blink),
 exerciseRoundRight(8),
 exerciseDelay(5, strings.blink),
 exerciseSlowCircleLeft(8),
 exerciseDelay(5, strings.blink),
+exerciseSlowCircleRight(8),
+exerciseDelay(5, strings.blink),
 exerciseEyeRollComplete(5)
 ]);
 
-// Focus & Relaxation: Specialized training for eye strain relief
+// Focus & Relaxation: Specialized training for eye strain relief and convergence
 export const focusRelaxation = addFinish([
 exerciseDelay(5, strings.getReady),
 exerciseNearFar(10),
@@ -131,6 +175,12 @@ exerciseDelay(5, strings.blink),
 exerciseZoom(8),
 exerciseDelay(5, strings.blink),
 exerciseAccommodation(10),
+exerciseDelay(5, strings.blink),
+exercisePencilPushUp(8),
+exerciseDelay(5, strings.blink),
+exerciseBarrelCard(8),
+exerciseDelay(5, strings.blink),
+exerciseDotFusion(10),
 exerciseDelay(5, strings.blink),
 exerciseLeftRight(10),
 exerciseDelay(5, strings.blink),
