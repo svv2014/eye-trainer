@@ -96,6 +96,140 @@
   border-radius: 300% 36%;
 }
 
+/* Visual Hint Animations for Special Exercises */
+
+/* Zoom effect: Pupil grows and shrinks to simulate near/far focus */
+.visualHint-zoom:before {
+  animation: zoomPulse 2s ease-in-out infinite;
+}
+
+@keyframes zoomPulse {
+  0%, 100% {
+    width: 30%;
+    height: 30%;
+  }
+  50% {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+/* Pulse effect: Gradual size changes for accommodation */
+.visualHint-pulse:before {
+  animation: gentlePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    width: 30%;
+    height: 30%;
+  }
+  50% {
+    width: 40%;
+    height: 40%;
+  }
+}
+
+/* Rapid Zoom: Quick near-far transitions */
+.visualHint-rapidZoom:before {
+  animation: rapidZoom 1s ease-in-out infinite;
+}
+
+@keyframes rapidZoom {
+  0%, 100% {
+    width: 30%;
+    height: 30%;
+  }
+  25% {
+    width: 50%;
+    height: 50%;
+  }
+  50% {
+    width: 30%;
+    height: 30%;
+  }
+  75% {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+/* Blink effect: Eyes close slightly */
+.visualHint-blink {
+  animation: blinkAnimation 1s ease-in-out infinite;
+}
+
+@keyframes blinkAnimation {
+  0%, 90%, 100% {
+    border-radius: 75% 15%;
+  }
+  95% {
+    border-radius: 300% 36%;
+  }
+}
+
+/* Convergence: Pupils move toward center (crossing eyes) */
+.eyeLeft.visualHint-convergence:before {
+  animation: convergeLeft 2.5s ease-in-out infinite;
+}
+
+.eyeRight.visualHint-convergence:before {
+  animation: convergeRight 2.5s ease-in-out infinite;
+}
+
+@keyframes convergeLeft {
+  0%, 100% {
+    left: 33%;
+    top: 33%;
+  }
+  50% {
+    left: 50%;
+    top: 50%;
+  }
+}
+
+@keyframes convergeRight {
+  0%, 100% {
+    left: 33%;
+    top: 33%;
+  }
+  50% {
+    left: 16%;
+    top: 16%;
+  }
+}
+
+/* Fusion: Pupils alternate positions to simulate dot fusion */
+.eyeLeft.visualHint-fusion:before {
+  animation: fusionLeft 1.5s ease-in-out infinite;
+}
+
+.eyeRight.visualHint-fusion:before {
+  animation: fusionRight 1.5s ease-in-out infinite;
+}
+
+@keyframes fusionLeft {
+  0%, 100% {
+    left: 33%;
+    top: 33%;
+  }
+  50% {
+    left: 40%;
+    top: 40%;
+  }
+}
+
+@keyframes fusionRight {
+  0%, 100% {
+    left: 33%;
+    top: 33%;
+  }
+  50% {
+    left: 26%;
+    top: 26%;
+  }
+}
+
 /* Responsive Eyes for Mobile */
 @media (max-width: 768px) {
   .eyeHolder {

@@ -241,7 +241,11 @@ class Exercise extends React.Component {
                 }
                 {next}
 
-                <Eyes eyeAction={this.state.eyeAction} size={this.state.windowSize} />
+                <Eyes
+                    eyeAction={this.state.eyeAction}
+                    size={this.state.windowSize}
+                    visualHint={this.state.currentExerciseSet?.visualHint}
+                />
                 <PauseButton onStateChage={this.onPlayButtonChange} play={this.state.play} />
                 <KeyboardEventHandler
                     handleKeys={['space']}

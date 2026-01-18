@@ -73,109 +73,80 @@ exerciseDelay(5, strings.blink),
 exerciseRoundRight(10)
 ]);
 
-// ===== PROGRESSIVE LEVELS (NEW) - Enhanced with Phase 1 exercises =====
+// ===== PROGRESSIVE LEVELS (NEW) - Balanced workouts with 6-8 exercises =====
 
-// Progressive Easy: Basics + Figure-8 patterns + simple geometric patterns
+// Progressive Easy: Basics + Figure-8 patterns (6 exercises)
 export const progressiveEasy = addFinish([
 exerciseDelay(5, strings.getReady),
 exerciseLeftRight(8),
 exerciseDelay(5, strings.blink),
 exerciseUpDown(8),
 exerciseDelay(5, strings.blink),
-exerciseFigure8Horizontal(5),
+exerciseFigure8Horizontal(6),
 exerciseDelay(5, strings.blink),
-exerciseFigure8Vertical(5),
+exerciseFigure8Vertical(6),
 exerciseDelay(5, strings.blink),
 exerciseTriangle(5),
 exerciseDelay(5, strings.blink),
-exerciseSquareClockwise(5),
-exerciseDelay(5, strings.blink),
-exerciseSlowCircleLeft(3)
+exerciseSlowCircleLeft(5)
 ]);
 
-// Progressive Medium: More variety with tracking, circles, and geometric patterns
+// Progressive Medium: Diagonal tracking + geometric patterns (7 exercises)
 export const progressiveMedium = addFinish([
+exerciseDelay(5, strings.getReady),
+exerciseLeftRight(10),
+exerciseDelay(5, strings.blink),
+exerciseUpDown(10),
+exerciseDelay(5, strings.blink),
+exerciseUpRightDownLeft(10),
+exerciseDelay(5, strings.blink),
+exerciseUpLeftDownRight(10),
+exerciseDelay(5, strings.blink),
+exerciseSquareClockwise(8),
+exerciseDelay(5, strings.blink),
+exerciseStar(6),
+exerciseDelay(5, strings.blink),
+exerciseRoundLeft(6)
+]);
+
+// Progressive Tough: Advanced tracking with spirals (8 exercises)
+export const progressiveTough = addFinish([
 exerciseDelay(5, strings.getReady),
 exerciseLeftRight(12),
 exerciseDelay(5, strings.blink),
 exerciseUpDown(12),
 exerciseDelay(5, strings.blink),
-exerciseUpRightDownLeft(12),
-exerciseDelay(5, strings.blink),
-exerciseUpLeftDownRight(12),
-exerciseDelay(5, strings.blink),
-exerciseFigure8Horizontal(8),
-exerciseDelay(5, strings.blink),
-exerciseFigure8Vertical(8),
-exerciseDelay(5, strings.blink),
-exerciseSquareClockwise(8),
-exerciseDelay(5, strings.blink),
-exerciseSquareCounterClockwise(8),
-exerciseDelay(5, strings.blink),
-exerciseTriangle(8),
-exerciseDelay(5, strings.blink),
-exerciseStar(6),
-exerciseDelay(5, strings.blink),
-exerciseRoundLeft(5),
-exerciseDelay(5, strings.blink),
-exerciseRoundRight(5),
-exerciseDelay(5, strings.blink),
-exerciseSlowCircleLeft(5),
-exerciseDelay(5, strings.blink),
-exerciseSlowCircleRight(5),
-exerciseDelay(5, strings.blink),
-exerciseWavePattern(8)
-]);
-
-// Progressive Tough: Full workout with Phase 1 and Phase 2 exercises
-export const progressiveTough = addFinish([
-exerciseDelay(5, strings.getReady),
-exerciseLeftRight(15),
-exerciseDelay(5, strings.blink),
-exerciseUpDown(15),
-exerciseDelay(5, strings.blink),
-exerciseUpRightDownLeft(15),
-exerciseDelay(5, strings.blink),
-exerciseUpLeftDownRight(15),
-exerciseDelay(5, strings.blink),
 exerciseFigure8Horizontal(10),
 exerciseDelay(5, strings.blink),
-exerciseFigure8Vertical(10),
-exerciseDelay(5, strings.blink),
-exerciseSquareClockwise(10),
-exerciseDelay(5, strings.blink),
 exerciseSquareCounterClockwise(10),
-exerciseDelay(5, strings.blink),
-exerciseTriangle(10),
-exerciseDelay(5, strings.blink),
-exerciseStar(8),
 exerciseDelay(5, strings.blink),
 exerciseWavePattern(10),
 exerciseDelay(5, strings.blink),
 exerciseSpiralOutward(8),
 exerciseDelay(5, strings.blink),
-exerciseSpiralInward(8),
-exerciseDelay(5, strings.blink),
-exerciseRoundLeft(8),
-exerciseDelay(5, strings.blink),
 exerciseRoundRight(8),
-exerciseDelay(5, strings.blink),
-exerciseSlowCircleLeft(8),
-exerciseDelay(5, strings.blink),
-exerciseSlowCircleRight(8),
 exerciseDelay(5, strings.blink),
 exerciseEyeRollComplete(5)
 ]);
 
-// Focus & Relaxation: Specialized training for eye strain relief and convergence
+// ===== SPECIALIZED WORKOUTS (NEW) - Focused training sessions =====
+
+// Focus & Relaxation: Eye strain relief and accommodation (6 exercises)
 export const focusRelaxation = addFinish([
 exerciseDelay(5, strings.getReady),
-exerciseNearFar(10),
+exerciseNearFar(8),
 exerciseDelay(5, strings.blink),
-exerciseZoom(8),
+exerciseZoom(6),
 exerciseDelay(5, strings.blink),
-exerciseAccommodation(10),
-exerciseDelay(5, strings.blink),
+exerciseAccommodation(8),
+exercisePalming(5),
+exerciseBlink(8),
+exerciseDistanceGaze(5)
+]);
+
+// Convergence Training: Exercises for eye coordination (6 exercises)
+export const convergenceTraining = addFinish([
+exerciseDelay(5, strings.getReady),
 exercisePencilPushUp(8),
 exerciseDelay(5, strings.blink),
 exerciseBarrelCard(8),
@@ -185,9 +156,42 @@ exerciseDelay(5, strings.blink),
 exerciseLeftRight(10),
 exerciseDelay(5, strings.blink),
 exerciseUpDown(10),
-exercisePalming(5),
-exerciseBlink(10),
-exerciseDistanceGaze(5)
+exerciseDelay(5, strings.blink),
+exerciseBlink(5)
+]);
+
+// Geometric Patterns: Shape tracking for precision (7 exercises)
+export const geometricPatterns = addFinish([
+exerciseDelay(5, strings.getReady),
+exerciseTriangle(8),
+exerciseDelay(5, strings.blink),
+exerciseSquareClockwise(8),
+exerciseDelay(5, strings.blink),
+exerciseSquareCounterClockwise(8),
+exerciseDelay(5, strings.blink),
+exerciseStar(8),
+exerciseDelay(5, strings.blink),
+exerciseFigure8Horizontal(8),
+exerciseDelay(5, strings.blink),
+exerciseFigure8Vertical(8),
+exerciseDelay(5, strings.blink),
+exerciseWavePattern(8)
+]);
+
+// Smooth Pursuit: Circular and flowing movements (6 exercises)
+export const smoothPursuit = addFinish([
+exerciseDelay(5, strings.getReady),
+exerciseRoundLeft(8),
+exerciseDelay(5, strings.blink),
+exerciseRoundRight(8),
+exerciseDelay(5, strings.blink),
+exerciseSlowCircleLeft(8),
+exerciseDelay(5, strings.blink),
+exerciseSlowCircleRight(8),
+exerciseDelay(5, strings.blink),
+exerciseSpiralOutward(8),
+exerciseDelay(5, strings.blink),
+exerciseSpiralInward(8)
 ]);
 
 // Calculate durations for each exercise set (in minutes)
@@ -202,7 +206,10 @@ export const exerciseDurations = {
     progressiveMedium: calculateExerciseDuration(progressiveMedium),
     progressiveTough: calculateExerciseDuration(progressiveTough),
     // Specialized Group
-    focusRelaxation: calculateExerciseDuration(focusRelaxation)
+    focusRelaxation: calculateExerciseDuration(focusRelaxation),
+    convergenceTraining: calculateExerciseDuration(convergenceTraining),
+    geometricPatterns: calculateExerciseDuration(geometricPatterns),
+    smoothPursuit: calculateExerciseDuration(smoothPursuit)
 };
 
 // Get exercise counts for each set (active exercises, not delays)
@@ -217,7 +224,10 @@ export const exerciseCounts = {
     progressiveMedium: progressiveMedium.filter(e => e.type === ACTIVITY_TYPE_EXERCISE).length,
     progressiveTough: progressiveTough.filter(e => e.type === ACTIVITY_TYPE_EXERCISE).length,
     // Specialized Group
-    focusRelaxation: focusRelaxation.filter(e => e.type === ACTIVITY_TYPE_EXERCISE).length
+    focusRelaxation: focusRelaxation.filter(e => e.type === ACTIVITY_TYPE_EXERCISE).length,
+    convergenceTraining: convergenceTraining.filter(e => e.type === ACTIVITY_TYPE_EXERCISE).length,
+    geometricPatterns: geometricPatterns.filter(e => e.type === ACTIVITY_TYPE_EXERCISE).length,
+    smoothPursuit: smoothPursuit.filter(e => e.type === ACTIVITY_TYPE_EXERCISE).length
 };
 
 // Exercise groups for accordion UI
@@ -248,7 +258,10 @@ export const exerciseGroups = {
         displayName: strings.groupSpecialized || 'Specialized',
         description: strings.groupSpecializedDesc || 'Targeted training for specific needs',
         levels: [
-            { key: 'focusRelaxation', name: strings.focusRelaxation || 'Focus & Relaxation', exercises: focusRelaxation }
+            { key: 'focusRelaxation', name: strings.focusRelaxation || 'Focus & Relaxation', exercises: focusRelaxation },
+            { key: 'convergenceTraining', name: strings.convergenceTraining || 'Convergence Training', exercises: convergenceTraining },
+            { key: 'geometricPatterns', name: strings.geometricPatterns || 'Geometric Patterns', exercises: geometricPatterns },
+            { key: 'smoothPursuit', name: strings.smoothPursuit || 'Smooth Pursuit', exercises: smoothPursuit }
         ]
     }
 };
