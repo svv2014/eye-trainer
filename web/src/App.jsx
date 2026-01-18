@@ -45,7 +45,15 @@ class App extends React.Component {
     }
 
     toggleTheme() {
-        const newTheme = this.state.theme === 'dark' ? 'light' : 'dark';
+        // Cycle through: dark → light → sepia → dark
+        let newTheme;
+        if (this.state.theme === 'dark') {
+            newTheme = 'light';
+        } else if (this.state.theme === 'light') {
+            newTheme = 'sepia';
+        } else {
+            newTheme = 'dark';
+        }
         setTheme(newTheme);
         this.setState({ theme: newTheme });
         trackThemeChange(newTheme);
@@ -124,10 +132,20 @@ class App extends React.Component {
                     <button
                         className="nav-icon-btn"
                         onClick={this.toggleTheme}
-                        title={this.state.theme === 'dark' ? strings.lightMode : strings.darkMode}
-                        aria-label={this.state.theme === 'dark' ? strings.lightMode : strings.darkMode}
+                        title={
+                            this.state.theme === 'dark' ? strings.lightMode :
+                            this.state.theme === 'light' ? strings.sepiaMode :
+                            strings.darkMode
+                        }
+                        aria-label={
+                            this.state.theme === 'dark' ? strings.lightMode :
+                            this.state.theme === 'light' ? strings.sepiaMode :
+                            strings.darkMode
+                        }
                     >
-                        <FontAwesomeIcon icon={this.state.theme === 'dark' ? faSun : faMoon} />
+                        {this.state.theme === 'dark' ? <FontAwesomeIcon icon={faSun} /> :
+                         this.state.theme === 'light' ? <span style={{fontSize: '18px'}}>☕</span> :
+                         <FontAwesomeIcon icon={faMoon} />}
                     </button>
                     <LanguageSwitch language={this.state.language} languages={languages}
                         onLanguageChange={(lang) => this.changeLanguage(lang)} />

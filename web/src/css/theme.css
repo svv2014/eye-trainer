@@ -106,6 +106,62 @@
     --divider-color: #e0e0e0;
 }
 
+/* Sepia theme - warm tones, reduces blue light, easier on eyes */
+[data-theme="sepia"] {
+    /* Background colors - warm beige/cream tones */
+    --bg-primary: #f4f1ea;
+    --bg-secondary: #faf8f3;
+    --bg-card: #ffffff;
+    --bg-tertiary: #ebe7de;
+    --bg-overlay: rgba(244, 241, 234, 0.95);
+    --bg-overlay-light: rgba(244, 241, 234, 0.8);
+
+    /* Text colors - warm browns */
+    --text-primary: #3a3226;
+    --text-secondary: #5c4f3a;
+    --text-tertiary: #756a55;
+    --text-muted: #8a7a5e;
+    --text-muted-dark: #9e8f73;
+
+    /* Accent colors - warm goldenrod/amber */
+    --accent-primary: #b8860b;
+    --accent-primary-hover: #9a7209;
+    --accent-gradient-start: #c9a959;
+    --accent-gradient-end: #8b6f47;
+
+    /* Border colors - warm grays */
+    --border-primary: #d4cfc4;
+    --border-secondary: #c9c3b8;
+    --border-tertiary: #beb8ad;
+    --border-hover: #a69e93;
+
+    /* Card backgrounds */
+    --card-gradient-start: #faf8f3;
+    --card-gradient-end: #f0ede4;
+    --card-featured-start: #f5f0e3;
+    --card-featured-end: #ebe6d9;
+
+    /* Warning/Disclaimer */
+    --warning-bg: rgba(184, 134, 11, 0.12);
+    --warning-border: rgba(154, 114, 9, 0.3);
+    --warning-text: #5c4f3a;
+
+    /* Shadows - warm tinted */
+    --shadow-card: 0 8px 24px rgba(58, 50, 38, 0.12);
+    --shadow-featured: 0 8px 24px rgba(184, 134, 11, 0.2);
+
+    /* Eye component colors */
+    --eye-bg: #faf8f3;
+    --eye-pupil: #3a3226;
+    --eye-border: #8a7a5e;
+
+    /* Divider */
+    --divider-color: #d4cfc4;
+
+    /* Additional sepia-specific for hover states */
+    --bg-hover: #ebe7de;
+}
+
 /* Respect system preference for first-time visitors */
 @media (prefers-color-scheme: light) {
     :root:not([data-theme]) {
