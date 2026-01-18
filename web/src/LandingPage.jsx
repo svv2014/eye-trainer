@@ -21,7 +21,10 @@ import {
     progressiveEasy,
     progressiveMedium,
     progressiveTough,
-    focusRelaxation
+    focusRelaxation,
+    convergenceTraining,
+    geometricPatterns,
+    smoothPursuit
 } from "./config/exerciseConfig";
 import SelfTest from "./pages/SelfTest";
 import AppPolicy from "./pages/AppPolicy";
@@ -73,6 +76,18 @@ const LandingPage = () =>
                 <Route path="/exerciseFocusRelaxation">
                     <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
                     <Exercise1 activities={focusRelaxation} difficulty="focusRelaxation" />
+                </Route>
+                <Route path="/exerciseConvergenceTraining">
+                    <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
+                    <Exercise1 activities={convergenceTraining} difficulty="convergenceTraining" />
+                </Route>
+                <Route path="/exerciseGeometricPatterns">
+                    <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
+                    <Exercise1 activities={geometricPatterns} difficulty="geometricPatterns" />
+                </Route>
+                <Route path="/exerciseSmoothPursuit">
+                    <a onClick={goBack} href={"#"} className={"back"}><FontAwesomeIcon icon={faArrowLeft} /></a>
+                    <Exercise1 activities={smoothPursuit} difficulty="smoothPursuit" />
                 </Route>
                 <Route path="/policy">
                     <AppPolicy />

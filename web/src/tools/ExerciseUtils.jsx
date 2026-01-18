@@ -237,6 +237,137 @@ export const exerciseEyeRollComplete = (repeat) => {
     }
 };
 
+// ===== PHASE 2: INTERMEDIATE EXERCISES (Geometric Patterns & Convergence) =====
+
+export const exerciseSquareClockwise = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 10
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.squareClockwise,
+        delay: 900,
+        moves: [ACTION_UP_LEFT, ACTION_UP_RIGHT, ACTION_DOWN_RIGHT, ACTION_DOWN_LEFT, ACTION_UP_LEFT, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
+export const exerciseSquareCounterClockwise = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 10
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.squareCounterClockwise,
+        delay: 900,
+        moves: [ACTION_UP_RIGHT, ACTION_UP_LEFT, ACTION_DOWN_LEFT, ACTION_DOWN_RIGHT, ACTION_UP_RIGHT, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
+export const exerciseTriangle = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 10
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.trianglePattern,
+        delay: 900,
+        moves: [ACTION_UP, ACTION_DOWN_LEFT, ACTION_DOWN_RIGHT, ACTION_UP, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
+export const exerciseStar = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 10
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.starPattern,
+        delay: 700,
+        moves: [ACTION_UP, ACTION_DOWN_LEFT, ACTION_UP_RIGHT, ACTION_DOWN, ACTION_UP_LEFT, ACTION_DOWN_RIGHT, ACTION_UP, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
+export const exercisePencilPushUp = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 8
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.pencilPushUp,
+        delay: 2500, // Very slow for convergence training
+        moves: [ACTION_CENTER],
+        repeat: repeats,
+        visualHint: 'convergence' // Signal for convergence animation
+    }
+};
+
+export const exerciseBarrelCard = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 8
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.barrelCard,
+        delay: 2000,
+        moves: [ACTION_LEFT, ACTION_RIGHT], // Alternating convergence points
+        repeat: repeats,
+        visualHint: 'convergence'
+    }
+};
+
+export const exerciseDotFusion = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 10
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.dotFusion,
+        delay: 1500,
+        moves: [ACTION_CENTER],
+        repeat: repeats,
+        visualHint: 'fusion' // Signal for dot fusion exercise
+    }
+};
+
+export const exerciseSlowCircleRight = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 10
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.slowCircleRight,
+        delay: 1000, // 2x slower than regular circle
+        moves: [ACTION_UP, ACTION_UP_RIGHT, ACTION_RIGHT, ACTION_DOWN_RIGHT,
+            ACTION_DOWN, ACTION_DOWN_LEFT, ACTION_LEFT, ACTION_UP_LEFT,
+            ACTION_UP, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
+export const exerciseSpiralOutward = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 8
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.spiralOutward,
+        delay: 600,
+        moves: [ACTION_CENTER, ACTION_UP, ACTION_UP_RIGHT, ACTION_RIGHT, ACTION_DOWN_RIGHT,
+            ACTION_DOWN, ACTION_DOWN_LEFT, ACTION_LEFT, ACTION_UP_LEFT, ACTION_UP, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
+export const exerciseSpiralInward = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 8
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.spiralInward,
+        delay: 600,
+        moves: [ACTION_UP, ACTION_UP_LEFT, ACTION_LEFT, ACTION_DOWN_LEFT,
+            ACTION_DOWN, ACTION_DOWN_RIGHT, ACTION_RIGHT, ACTION_UP_RIGHT, ACTION_UP, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
+export const exerciseWavePattern = (repeat) => {
+    let repeats = repeat !== undefined ? repeat : 10
+    return {
+        type: ACTIVITY_TYPE_EXERCISE,
+        name: strings.wavePattern,
+        delay: 700,
+        moves: [ACTION_LEFT, ACTION_UP_LEFT, ACTION_UP, ACTION_UP_RIGHT,
+            ACTION_RIGHT, ACTION_DOWN_RIGHT, ACTION_DOWN, ACTION_DOWN_LEFT, ACTION_LEFT, ACTION_CENTER],
+        repeat: repeats
+    }
+};
+
 export const delayCounter = (delaySeconds) => {
     console.log("delay: ", delaySeconds);
     let replaySubject = new ReplaySubject();

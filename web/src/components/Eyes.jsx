@@ -27,7 +27,7 @@ class Eyes extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { size: props.size, eyeAction: '' };
+        this.state = { size: props.size, eyeAction: '', visualHint: props.visualHint };
         this.subscription = this.resultDebounce.subscribe(state => {
             if (state.action === STATE) {
                 this.setState(state.data)
@@ -73,11 +73,17 @@ class Eyes extends React.Component {
             classNameEyeMove += ' moveDownRight'
         }
 
+        // Add visual hint classes for special exercises
+        let visualHintClass = "";
+        if (this.state.visualHint) {
+            visualHintClass = ` visualHint-${this.state.visualHint}`;
+        }
+
         return (
             <div className={"eyeHolder"} style={{ width: eyeSize, height: eyeSize / 2 }}>
                 <div className="eyeContainer" style={{ width: eyeSize, height: eyeSize }}>
-                    <div className={classNameEyeMove + " eye eyeLeft"} />
-                    <div className={classNameEyeMove + " eye eyeRight"} />
+                    <div className={classNameEyeMove + visualHintClass + " eye eyeLeft"} />
+                    <div className={classNameEyeMove + visualHintClass + " eye eyeRight"} />
                 </div>
             </div>)
     };
