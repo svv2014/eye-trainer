@@ -64,7 +64,9 @@ class App extends React.Component {
         setAudioEnabled(newAudioState);
         this.setState({ audioEnabled: newAudioState });
         trackAudioToggle(newAudioState);
-        // Unlock audio on user interaction
+        // Update audioGuide enabled state
+        audioGuide.setEnabled(newAudioState);
+        // Unlock audio on user interaction (must be in click handler)
         if (newAudioState) {
             audioGuide.unlockAudio();
         }

@@ -37,7 +37,20 @@
     border: 1px solid var(--border-tertiary);
     white-space: nowrap;
     backdrop-filter: blur(10px);
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    cursor: pointer;
+    user-select: none;
+}
+
+.displayNext:hover {
+    background: var(--bg-overlay-light);
+    border-color: var(--border-secondary);
+    color: var(--text-secondary);
+    transform: translateX(-50%) scale(1.02);
+}
+
+.displayNext:active {
+    transform: translateX(-50%) scale(0.98);
 }
 
 /* Status Display */
