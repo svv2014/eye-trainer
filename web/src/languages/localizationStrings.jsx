@@ -104,6 +104,7 @@ const translations = new LocalizedStrings({
         // Theme and audio
         lightMode: "Switch to Light Mode",
         darkMode: "Switch to Dark Mode",
+        sepiaMode: "Switch to Sepia Mode",
         audioOn: "Voice Guidance On",
         audioOff: "Voice Guidance Off",
         // Audio directions
@@ -233,6 +234,7 @@ const translations = new LocalizedStrings({
         // Theme and audio
         lightMode: "Cambiar a Modo Claro",
         darkMode: "Cambiar a Modo Oscuro",
+        sepiaMode: "Cambiar a Modo Sepia",
         audioOn: "Guía de Voz Activada",
         audioOff: "Guía de Voz Desactivada",
         // Audio directions
@@ -362,6 +364,7 @@ const translations = new LocalizedStrings({
         // Theme and audio
         lightMode: "Passer au mode clair",
         darkMode: "Passer au mode sombre",
+        sepiaMode: "Passer au mode sépia",
         audioOn: "Guidage vocal activé",
         audioOff: "Guidage vocal désactivé",
         // Audio directions
@@ -491,6 +494,7 @@ const translations = new LocalizedStrings({
         // Theme and audio
         lightMode: "Переключить на светлый режим",
         darkMode: "Переключить на тёмный режим",
+        sepiaMode: "Переключить на режим сепия",
         audioOn: "Голосовое сопровождение включено",
         audioOff: "Голосовое сопровождение выключено",
         // Audio directions
@@ -620,6 +624,7 @@ const translations = new LocalizedStrings({
         // Theme and audio
         lightMode: "Перемкнути на світлий режим",
         darkMode: "Перемкнути на темний режим",
+        sepiaMode: "Перемкнути на режим сепія",
         audioOn: "Голосовий супровід увімкнено",
         audioOff: "Голосовий супровід вимкнено",
         // Audio directions
@@ -749,6 +754,7 @@ const translations = new LocalizedStrings({
         // Theme and audio
         lightMode: "Zum hellen Modus wechseln",
         darkMode: "Zum dunklen Modus wechseln",
+        sepiaMode: "Zum Sepia-Modus wechseln",
         audioOn: "Sprachführung Ein",
         audioOff: "Sprachführung Aus",
         // Audio directions
